@@ -73,6 +73,13 @@
 
   /* pills */
   .pill{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--surf2);color:var(--sec)}
+  a.pill.link{background:var(--blueBg);color:var(--blue);text-decoration:none;border:1px solid transparent;transition:border-color .12s ease}
+  a.pill.link:hover{border-color:var(--blue);text-decoration:underline}
+  a.pill.link:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  a.pill.link .ext{margin-left:4px;font-size:11px;opacity:.75}
+  a.tlink{color:var(--blue);text-decoration:none}
+  a.tlink:hover{text-decoration:underline}
+  @media (prefers-reduced-motion:reduce){a.pill.link{transition:none}}
   .pill.blue{background:var(--blueBg);color:var(--blue)}
   .pill.green{background:var(--greenBg);color:var(--green)}
   .pill.orange{background:var(--orangeBg);color:var(--orange)}
@@ -246,9 +253,9 @@
   <details open><summary><span class="code">1</span>계획·예산 <span class="pill">GGA 작성 / 에코아이 승인</span></summary>
     <div class="dbody">
       <ul>
-        <li>연간예산(Operating Cost) 초안 작성과 에코아이 승인 <span class="pill">원고 B-01</span></li>
-        <li>연간예산 마일스톤 통지와 증빙 검토 <span class="pill">원고 B-02</span></li>
-        <li>초과운영비 발생 가능성 사전 점검 <span class="pill">원고 B-03</span></li>
+        <li>연간예산(Operating Cost) 초안 작성과 에코아이 승인 <a class="pill link" href="https://www.notion.so/856a10e9bab2445195372d9dcea5d75e" target="_blank" rel="noopener" title="연간예산 수립·승인 및 변경">원고 B-01<span class="ext">↗</span></a></li>
+        <li>연간예산 마일스톤 통지와 증빙 검토 <a class="pill link" href="https://www.notion.so/900735d78f9a4a06afb6f04d9d45f9cd" target="_blank" rel="noopener" title="GGA 자금 지급 요청 처리">원고 B-02<span class="ext">↗</span></a></li>
+        <li>초과운영비 발생 가능성 사전 점검 <a class="pill link" href="https://www.notion.so/a83236facbd8487084256ba486f487b4" target="_blank" rel="noopener" title="초과자금 협의 및 지급">원고 B-03<span class="ext">↗</span></a></li>
       </ul>
       <div class="call"><p class="small">별표 1의 Project Milestone Notice(제5.1~5.2조 · 수령 후 30일 역일 · 개발비)는 사업 초기 일회성 지급 단위로 이미 완료되었습니다. 앞으로 반복되는 통지는 연간예산 마일스톤 통지(제5.3조 · 30영업일 · 운영비)입니다.</p></div>
       <p class="small muted">근거: 제5.3조(제4차 변경), 제5.9조</p>
@@ -259,8 +266,8 @@
     <div class="dbody">
       <ul>
         <li>Hududgaz 협의와 배관망 누출 감축 설비 개선</li>
-        <li>운영비 집행과 증빙 보관(별표 2 서식) <span class="pill">원고 B-02</span></li>
-        <li>분기 종료 후 1개월 내 보고 <span class="pill">원고 B-07</span></li>
+        <li>운영비 집행과 증빙 보관(별표 2 서식) <a class="pill link" href="https://www.notion.so/900735d78f9a4a06afb6f04d9d45f9cd" target="_blank" rel="noopener" title="GGA 자금 지급 요청 처리">원고 B-02<span class="ext">↗</span></a></li>
+        <li>분기 종료 후 1개월 내 보고 <a class="pill link" href="https://www.notion.so/280f0338c89e4a2c9d0759f3342b79e8" target="_blank" rel="noopener" title="사업 진행·예산 집행 점검 및 감사">원고 B-07<span class="ext">↗</span></a></li>
       </ul>
       <p class="small muted">근거: 제4.1~4.4조, 제4.12조</p>
     </div>
@@ -269,8 +276,8 @@
   <details><summary><span class="code">3</span>모니터링·검증 <span class="pill">GGA / 에코아이 확인</span></summary>
     <div class="dbody">
       <ul>
-        <li>모니터링 보고서 작성과 검증기관 검증 <span class="pill">원고 N-01</span> <span class="pill">원고 N-02</span></li>
-        <li>에코아이 요청 자료 10영업일 내 제공 <span class="pill">원고 B-09</span></li>
+        <li>모니터링 보고서 작성과 검증기관 검증 <a class="pill link" href="https://www.notion.so/76620f2cce754da8b37ec96f4ca87d2a" target="_blank" rel="noopener" title="감축량 모니터링">원고 N-01<span class="ext">↗</span></a> <a class="pill link" href="https://www.notion.so/9b8c22bf9d3c4048b6dccdd559922d8c" target="_blank" rel="noopener" title="검증 및 보완자료 제출">원고 N-02<span class="ext">↗</span></a></li>
+        <li>에코아이 요청 자료 10영업일 내 제공 <a class="pill link" href="https://www.notion.so/b907ddd414874878983d056f05ba562f" target="_blank" rel="noopener" title="외부 자료 제공 및 비밀유지">원고 B-09<span class="ext">↗</span></a></li>
       </ul>
       <p class="small muted">근거: 제4.5조, 제4.13조</p>
     </div>
@@ -279,12 +286,12 @@
   <details><summary><span class="code">4</span>발급·라벨 <span class="pill">GGA 주도 / 에코아이 자금</span></summary>
     <div class="dbody">
       <ul>
-        <li>Verra 등록·발급과 레지스트리 연회비 관리 <span class="pill">원고 N-03</span> <span class="pill">원고 B-08</span></li>
-        <li><b>발급 즉시</b> 해당 빈티지 발급량의 20%를 유보배출권으로 분리 지정하고 판매 가능 물량을 80%로 확정 <span class="pill">원고 B-05</span></li>
+        <li>Verra 등록·발급과 레지스트리 연회비 관리 <a class="pill link" href="https://www.notion.so/235bcf18763744a6945f59096b80bfb1" target="_blank" rel="noopener" title="배출권 발행 및 수수료 처리">원고 N-03<span class="ext">↗</span></a> <a class="pill link" href="https://www.notion.so/8836b37f1b844a0f9026434abbcba789" target="_blank" rel="noopener" title="등록부 운영 및 공동 승인">원고 B-08<span class="ext">↗</span></a></li>
+        <li><b>발급 즉시</b> 해당 빈티지 발급량의 20%를 유보배출권으로 분리 지정하고 판매 가능 물량을 80%로 확정 <a class="pill link" href="https://www.notion.so/d52b0f5f7efe4a109b777409fd29a87e" target="_blank" rel="noopener" title="유보 배출권 이전·취소">원고 B-05<span class="ext">↗</span></a></li>
         <li>유보분은 미판매·무담보 상태로 에코아이 Verra 계정에 보유하고 빈티지별 대장에 기록</li>
-        <li>CORSIA 라벨·보험과 A6 라벨비 산정 대상은 유보분을 반영해 판매 가능 물량 기준으로 확정 <span class="pill">원고 N-04</span></li>
-        <li>발행비 처리(선납 또는 판매대금 선차감) <span class="pill">원고 N-03</span></li>
-        <li>상응조정(CA) 및 허가서(LoA) 관련 정부 절차 <span class="pill">원고 B-04</span></li>
+        <li>CORSIA 라벨·보험과 A6 라벨비 산정 대상은 유보분을 반영해 판매 가능 물량 기준으로 확정 <a class="pill link" href="https://www.notion.so/d05995e617ae406e98d578181f509923" target="_blank" rel="noopener" title="CORSIA 보험 가입 및 라벨링">원고 N-04<span class="ext">↗</span></a></li>
+        <li>발행비 처리(선납 또는 판매대금 선차감) <a class="pill link" href="https://www.notion.so/235bcf18763744a6945f59096b80bfb1" target="_blank" rel="noopener" title="배출권 발행 및 수수료 처리">원고 N-03<span class="ext">↗</span></a></li>
+        <li>상응조정(CA) 및 허가서(LoA) 관련 정부 절차 <a class="pill link" href="https://www.notion.so/53a51d59697d44d3ab525c535d4b93bb" target="_blank" rel="noopener" title="CA 진행 현황 및 빈티지별 기한 점검">원고 B-04<span class="ext">↗</span></a></li>
       </ul>
       <p class="small muted">근거: 제4.5조, 제5.10조, 제6.1.1~6.1.2조</p>
     </div>
@@ -293,9 +300,9 @@
   <details><summary><span class="code">5</span>판매·이전 <span class="pill">에코아이</span></summary>
     <div class="dbody">
       <ul>
-        <li>4단계에서 분리한 유보분을 제외한 판매 가능 물량만 판매 대상에 편입 <span class="pill">원고 B-05</span></li>
-        <li>판매계약 체결과 대금 수령 <span class="pill">원고 N-05</span></li>
-        <li>판매·이전 부대비용 선차감 사전 통지(최소 5영업일 전) <span class="pill">원고 N-06</span></li>
+        <li>4단계에서 분리한 유보분을 제외한 판매 가능 물량만 판매 대상에 편입 <a class="pill link" href="https://www.notion.so/d52b0f5f7efe4a109b777409fd29a87e" target="_blank" rel="noopener" title="유보 배출권 이전·취소">원고 B-05<span class="ext">↗</span></a></li>
+        <li>판매계약 체결과 대금 수령 <a class="pill link" href="https://www.notion.so/45627fa0e93940d5a7ed88863ac4afa0" target="_blank" rel="noopener" title="판매계약 체결 및 배출권 인도">원고 N-05<span class="ext">↗</span></a></li>
+        <li>판매·이전 부대비용 선차감 사전 통지(최소 5영업일 전) <a class="pill link" href="https://www.notion.so/06c8c7a9829c4c9396067aac0f79b40e" target="_blank" rel="noopener" title="판매대금 정산 및 배분">원고 N-06<span class="ext">↗</span></a></li>
       </ul>
       <p class="small muted">근거: 제3.4조, 제6.1.1~6.1.2조</p>
     </div>
@@ -304,9 +311,9 @@
   <details><summary><span class="code">6</span>정산·배분 <span class="pill">에코아이</span></summary>
     <div class="dbody">
       <ul>
-        <li>판매대금 수령 후 20영업일 내 워터폴 분배 <span class="pill">원고 N-06</span></li>
-        <li>투자금과 초과투자금(12% 프리미엄 포함) 회수 정산 <span class="pill">원고 B-03</span></li>
-        <li>한시적 재조정 구간 누적액 관리 <span class="pill">원고 H-02</span></li>
+        <li>판매대금 수령 후 20영업일 내 워터폴 분배 <a class="pill link" href="https://www.notion.so/06c8c7a9829c4c9396067aac0f79b40e" target="_blank" rel="noopener" title="판매대금 정산 및 배분">원고 N-06<span class="ext">↗</span></a></li>
+        <li>투자금과 초과투자금(12% 프리미엄 포함) 회수 정산 <a class="pill link" href="https://www.notion.so/a83236facbd8487084256ba486f487b4" target="_blank" rel="noopener" title="초과자금 협의 및 지급">원고 B-03<span class="ext">↗</span></a></li>
+        <li>한시적 재조정 구간 누적액 관리 <a class="pill link" href="https://www.notion.so/2fa94e9d33854e7f89e453fc216eb25e" target="_blank" rel="noopener" title="USD 3,333,333 누계 지급 특례">원고 H-02<span class="ext">↗</span></a></li>
       </ul>
       <p class="small muted">근거: 제6.1.1~6.1.2조, 사이드레터 제6~8항</p>
     </div>
@@ -315,9 +322,9 @@
   <details><summary><span class="code">7</span>CA·사후관리 <span class="pill">공동</span></summary>
     <div class="dbody">
       <ul>
-        <li>BTR 반영 여부 확인과 CA Longstop 판단 <span class="pill">원고 B-04</span> <span class="pill">원고 E-01</span></li>
-        <li>9개월 기한 관리, 기한 후 1개월 내 정산·증빙 <span class="pill">원고 E-02</span></li>
-        <li>유보배출권 처리(이전·취소 또는 합의 매각) <span class="pill">원고 B-05</span> <span class="pill">원고 E-03</span></li>
+        <li>BTR 반영 여부 확인과 CA Longstop 판단 <a class="pill link" href="https://www.notion.so/53a51d59697d44d3ab525c535d4b93bb" target="_blank" rel="noopener" title="CA 진행 현황 및 빈티지별 기한 점검">원고 B-04<span class="ext">↗</span></a> <a class="pill link" href="https://www.notion.so/14ebe9b0899d458492d75f543805d294" target="_blank" rel="noopener" title="CA Longstop 도래 시 미완료 대응">원고 E-01<span class="ext">↗</span></a></li>
+        <li>9개월 기한 관리, 기한 후 1개월 내 정산·증빙 <a class="pill link" href="https://www.notion.so/181b58c1efe14857b59686edd16a6e66" target="_blank" rel="noopener" title="CA 9개월 미완료 시 잔여금 정산">원고 E-02<span class="ext">↗</span></a></li>
+        <li>유보배출권 처리(이전·취소 또는 합의 매각) <a class="pill link" href="https://www.notion.so/d52b0f5f7efe4a109b777409fd29a87e" target="_blank" rel="noopener" title="유보 배출권 이전·취소">원고 B-05<span class="ext">↗</span></a> <a class="pill link" href="https://www.notion.so/2c39ac27f8d345d79fc041a23911298d" target="_blank" rel="noopener" title="CA 미완료에 따른 유보 배출권 예외판매">원고 E-03<span class="ext">↗</span></a></li>
       </ul>
       <p class="small muted">근거: 제6.1.4~6.1.5조, 사이드레터 제21~22항</p>
     </div>
@@ -930,6 +937,44 @@
       <tr><td class="nowrap">선차감 사전 통지</td><td class="nowrap">비용 부담 당사자 → 상대방</td><td class="nowrap">회수 최소 5영업일 전</td><td class="nowrap">6.1.1</td><td>비용 내역과 합리적 증빙</td></tr>
     </tbody>
   </table></div>
+
+  <h3>원고 인덱스 — Notion 바로가기</h3>
+  <p class="muted small">매뉴얼 원고 목록 DB의 33개 원고입니다. 코드나 제목을 누르면 Notion 페이지가 새 탭으로 열립니다(워크스페이스 로그인 필요).</p>
+  <div class="tscroll"><table><thead><tr><th class="nowrap">코드</th><th>업무 상황</th><th class="nowrap">분류</th></tr></thead><tbody>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/856a10e9bab2445195372d9dcea5d75e" target="_blank" rel="noopener">B-01<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/856a10e9bab2445195372d9dcea5d75e" target="_blank" rel="noopener">연간예산 수립·승인 및 변경</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/900735d78f9a4a06afb6f04d9d45f9cd" target="_blank" rel="noopener">B-02<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/900735d78f9a4a06afb6f04d9d45f9cd" target="_blank" rel="noopener">GGA 자금 지급 요청 처리</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/a83236facbd8487084256ba486f487b4" target="_blank" rel="noopener">B-03<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/a83236facbd8487084256ba486f487b4" target="_blank" rel="noopener">초과자금 협의 및 지급</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/53a51d59697d44d3ab525c535d4b93bb" target="_blank" rel="noopener">B-04<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/53a51d59697d44d3ab525c535d4b93bb" target="_blank" rel="noopener">CA 진행 현황 및 빈티지별 기한 점검</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/d52b0f5f7efe4a109b777409fd29a87e" target="_blank" rel="noopener">B-05<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/d52b0f5f7efe4a109b777409fd29a87e" target="_blank" rel="noopener">유보 배출권 이전·취소</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/c64108c347e746f0a451518e72475fbb" target="_blank" rel="noopener">B-06<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/c64108c347e746f0a451518e72475fbb" target="_blank" rel="noopener">SP Fund 및 사회공헌사업 검토</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/280f0338c89e4a2c9d0759f3342b79e8" target="_blank" rel="noopener">B-07<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/280f0338c89e4a2c9d0759f3342b79e8" target="_blank" rel="noopener">사업 진행·예산 집행 점검 및 감사</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/8836b37f1b844a0f9026434abbcba789" target="_blank" rel="noopener">B-08<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/8836b37f1b844a0f9026434abbcba789" target="_blank" rel="noopener">등록부 운영 및 공동 승인</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/b907ddd414874878983d056f05ba562f" target="_blank" rel="noopener">B-09<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/b907ddd414874878983d056f05ba562f" target="_blank" rel="noopener">외부 자료 제공 및 비밀유지</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/482b86c7677a4f99b242abdc307fa7a9" target="_blank" rel="noopener">B-10<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/482b86c7677a4f99b242abdc307fa7a9" target="_blank" rel="noopener">공식 통지·기한 계산 및 계약 변경</a></td><td class="nowrap">상시·병행</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/14ebe9b0899d458492d75f543805d294" target="_blank" rel="noopener">E-01<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/14ebe9b0899d458492d75f543805d294" target="_blank" rel="noopener">CA Longstop 도래 시 미완료 대응</a></td><td class="nowrap">예외 · CA Longstop</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/181b58c1efe14857b59686edd16a6e66" target="_blank" rel="noopener">E-02<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/181b58c1efe14857b59686edd16a6e66" target="_blank" rel="noopener">CA 9개월 미완료 시 잔여금 정산</a></td><td class="nowrap">예외 · CA Longstop</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/2c39ac27f8d345d79fc041a23911298d" target="_blank" rel="noopener">E-03<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/2c39ac27f8d345d79fc041a23911298d" target="_blank" rel="noopener">CA 미완료에 따른 유보 배출권 예외판매</a></td><td class="nowrap">예외 · CA Longstop</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/c5dc6e04b4934c43bb9148739ce0b24e" target="_blank" rel="noopener">E-04<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/c5dc6e04b4934c43bb9148739ce0b24e" target="_blank" rel="noopener">CA 장기 미완료에 따른 배분 변경합의</a></td><td class="nowrap">예외 · CA Longstop</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/d6d5eb4ffe3c4617b2e56723506643e4" target="_blank" rel="noopener">E-05<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/d6d5eb4ffe3c4617b2e56723506643e4" target="_blank" rel="noopener">상응조정 실패 시 보험금 청구 및 대체 배출권 구매</a></td><td class="nowrap">예외 · CA Longstop</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/624acdf7de4a481782f65297a9935869" target="_blank" rel="noopener">E-06<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/624acdf7de4a481782f65297a9935869" target="_blank" rel="noopener">정부의 추가 요구·비용 증가 및 재원 부족 대응</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/d46d0a1370004e48abb40c00ebf6b8ce" target="_blank" rel="noopener">E-07<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/d46d0a1370004e48abb40c00ebf6b8ce" target="_blank" rel="noopener">Legal Costs 지급 및 SP Fund 회수</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/dfdd488278de49d7936db2b5159bf557" target="_blank" rel="noopener">E-08<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/dfdd488278de49d7936db2b5159bf557" target="_blank" rel="noopener">발행 지연·거절·물량 축소 및 권리 침해 대응</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/6dab318a8a114159bc24be8c415690d7" target="_blank" rel="noopener">E-09<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/6dab318a8a114159bc24be8c415690d7" target="_blank" rel="noopener">법령·기준 변경 대응</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/e6105e96be5442aeb37465db4dc8fdfe" target="_blank" rel="noopener">E-10<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/e6105e96be5442aeb37465db4dc8fdfe" target="_blank" rel="noopener">불가항력 통지 및 이행 조정</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/72304b1ded3e49ffb8b7c7b084bd8175" target="_blank" rel="noopener">E-11<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/72304b1ded3e49ffb8b7c7b084bd8175" target="_blank" rel="noopener">계약 위반·지급 유보 및 종료</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/87c8e78211844d2ab1109649d53be3f8" target="_blank" rel="noopener">E-12<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/87c8e78211844d2ab1109649d53be3f8" target="_blank" rel="noopener">분쟁·손해배상 및 보상 청구</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/177d9a377cd242ed99902b7a237e814c" target="_blank" rel="noopener">E-13<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/177d9a377cd242ed99902b7a237e814c" target="_blank" rel="noopener">독점·준법·비밀유지 위반 대응</a></td><td class="nowrap">예외 · 기타</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/03804921bcb0463c9eafec8a288c76c5" target="_blank" rel="noopener">H-01<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/03804921bcb0463c9eafec8a288c76c5" target="_blank" rel="noopener">특정 LDC 판매 정산</a></td><td class="nowrap">한시특례·이력</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/2fa94e9d33854e7f89e453fc216eb25e" target="_blank" rel="noopener">H-02<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/2fa94e9d33854e7f89e453fc216eb25e" target="_blank" rel="noopener">USD 3,333,333 누계 지급 특례</a></td><td class="nowrap">한시특례·이력</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/3d07bd00efa849a582243f2df6a297dd" target="_blank" rel="noopener">H-03<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/3d07bd00efa849a582243f2df6a297dd" target="_blank" rel="noopener">과거 Developer’s Contribution 확정 이력</a></td><td class="nowrap">한시특례·이력</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/895e0e6f11e04c88afae4a11c5b279a5" target="_blank" rel="noopener">H-04<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/895e0e6f11e04c88afae4a11c5b279a5" target="_blank" rel="noopener">초기 단계 자료 및 계약기간 이력</a></td><td class="nowrap">한시특례·이력</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/76620f2cce754da8b37ec96f4ca87d2a" target="_blank" rel="noopener">N-01<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/76620f2cce754da8b37ec96f4ca87d2a" target="_blank" rel="noopener">감축량 모니터링</a></td><td class="nowrap">정상 반복</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/9b8c22bf9d3c4048b6dccdd559922d8c" target="_blank" rel="noopener">N-02<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/9b8c22bf9d3c4048b6dccdd559922d8c" target="_blank" rel="noopener">검증 및 보완자료 제출</a></td><td class="nowrap">정상 반복</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/235bcf18763744a6945f59096b80bfb1" target="_blank" rel="noopener">N-03<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/235bcf18763744a6945f59096b80bfb1" target="_blank" rel="noopener">배출권 발행 및 수수료 처리</a></td><td class="nowrap">정상 반복</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/d05995e617ae406e98d578181f509923" target="_blank" rel="noopener">N-04<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/d05995e617ae406e98d578181f509923" target="_blank" rel="noopener">CORSIA 보험 가입 및 라벨링</a></td><td class="nowrap">정상 반복</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/45627fa0e93940d5a7ed88863ac4afa0" target="_blank" rel="noopener">N-05<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/45627fa0e93940d5a7ed88863ac4afa0" target="_blank" rel="noopener">판매계약 체결 및 배출권 인도</a></td><td class="nowrap">정상 반복</td></tr>
+      <tr><td class="nowrap"><a class="pill link" href="https://www.notion.so/06c8c7a9829c4c9396067aac0f79b40e" target="_blank" rel="noopener">N-06<span class="ext">↗</span></a></td><td><a class="tlink" href="https://www.notion.so/06c8c7a9829c4c9396067aac0f79b40e" target="_blank" rel="noopener">판매대금 정산 및 배분</a></td><td class="nowrap">정상 반복</td></tr>
+    </tbody></table></div>
 </section>
 
 </main>
