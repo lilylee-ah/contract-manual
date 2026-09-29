@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>계약 운영 사이트 · 우즈베키스탄 가스 누출 감축사업</title>
+<style>
+  :root{--text:#2C2C2B;--sec:#7D7A75;--canvas:#FFFFFF;--surf:#F9F8F7;--surf2:#F0EFED;--bd:#E6E5E3;
+    --blue:#2783DE;--blueBg:#E5F2FC;--green:#46A171;--greenBg:#E8F1EC;--orange:#D5803B;--orangeBg:#FBEBDE;--red:#E56458;--redBg:#FCE9E7;
+    --sh:0 1px 2px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.04)}
+  @media (prefers-color-scheme:dark){:root{--text:#FFFFFF;--sec:rgba(255,255,255,.65);--canvas:#191919;--surf:#202020;--surf2:#383836;--bd:rgba(255,255,255,.20);
+    --blue:#5E9FE8;--blueBg:rgba(94,159,232,.12);--green:#72BC8F;--greenBg:rgba(114,188,143,.12);--orange:#DE9255;--orangeBg:rgba(222,146,85,.12);--red:#E97366;--redBg:rgba(233,115,102,.12);--sh:none}}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--canvas);color:var(--text);font-size:16px;line-height:1.55;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",Roboto,sans-serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--bd)}
+  .brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:20px 0 12px}
+  .brand h1{font-size:19px;margin:0;font-weight:700;letter-spacing:-.01em}
+  .brand .tagline{font-size:14px;color:var(--sec)}
+  nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+  nav.tabs::-webkit-scrollbar{display:none}
+  nav.tabs button{font:inherit;font-size:15px;font-weight:600;color:var(--sec);background:none;border:0;
+    border-bottom:2px solid transparent;padding:10px 12px;min-height:44px;cursor:pointer;white-space:nowrap}
+  nav.tabs button:hover{color:var(--text)}
+  nav.tabs button[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+  button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+  /* layout */
+  main{padding:40px 0 96px}
+  .panel[hidden]{display:none}
+  .lede{font-size:16px;color:var(--sec);max-width:760px;margin:0 0 32px}
+  h2{font-size:27px;margin:0 0 8px;font-weight:700;letter-spacing:-.015em}
+  h3{font-size:21px;margin:48px 0 12px;font-weight:700;letter-spacing:-.01em}
+  h3:first-of-type{margin-top:40px}
+  h4{font-size:17px;margin:24px 0 8px;font-weight:700}
+  p{margin:0 0 12px}
+  .muted{color:var(--sec)}
+  .small{font-size:14px}
+
+  /* callouts */
+  .call{border:1px solid var(--bd);border-left:3px solid var(--sec);border-radius:12px;padding:16px 20px;margin:16px 0;background:var(--surf);font-size:15px}
+  .call.blue{border-left-color:var(--blue);background:var(--blueBg)}
+  .call.green{border-left-color:var(--green);background:var(--greenBg)}
+  .call.orange{border-left-color:var(--orange);background:var(--orangeBg)}
+  .call.red{border-left-color:var(--red);background:var(--redBg)}
+  .call p:last-child,.call ul:last-child{margin-bottom:0}
+  .call ul{margin:8px 0 0;padding-left:20px}
+  .call li{margin-bottom:6px}
+
+  /* tables */
+  .tscroll{overflow-x:auto;border:1px solid var(--bd);border-radius:12px;margin:16px 0;box-shadow:var(--sh)}
+  table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--bd);vertical-align:top}
+  th{background:var(--surf);font-weight:600;font-size:14px;color:var(--sec);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  td.nowrap,th.nowrap{white-space:nowrap}
+  td b{font-weight:600}
+
+  /* cards */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .card{border:1px solid var(--bd);border-radius:12px;padding:20px;background:var(--canvas);box-shadow:var(--sh)}
+  .card h4{margin:0 0 8px}
+  .card p{font-size:14px;color:var(--sec);margin:0}
+  .kpi{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px}
+  .kpi.blue{color:var(--blue)}.kpi.orange{color:var(--orange)}.kpi.green{color:var(--green)}.kpi.red{color:var(--red)}
+
+  /* pills */
+  .pill{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--surf2);color:var(--sec)}
+  .pill.blue{background:var(--blueBg);color:var(--blue)}
+  .pill.green{background:var(--greenBg);color:var(--green)}
+  .pill.orange{background:var(--orangeBg);color:var(--orange)}
+  .pill.red{background:var(--redBg);color:var(--red)}
+  .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+
+  /* details */
+  details{border:1px solid var(--bd);border-radius:12px;margin-bottom:12px;background:var(--canvas);box-shadow:var(--sh)}
+  details[open]{background:var(--surf)}
+  summary{cursor:pointer;padding:16px 20px;min-height:44px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";margin-left:auto;color:var(--sec);font-weight:600;font-size:18px}
+  details[open] summary::after{content:"\2212"}
+  .dbody{padding:0 20px 20px;border-top:1px solid var(--bd);margin-top:-1px;padding-top:16px}
+  .dbody>*:first-child{margin-top:0}
+  .code{flex:none;width:26px;height:26px;border-radius:8px;background:var(--surf2);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  /* steps checklist */
+  ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  li.step{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--bd);border-radius:12px;background:var(--canvas);padding:14px 18px;box-shadow:var(--sh)}
+  li.step.done{background:var(--surf)}
+  li.step.done .st{color:var(--sec);text-decoration:line-through}
+  label.box{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-8px 0 -8px -10px;cursor:pointer}
+  label.box input{width:20px;height:20px;accent-color:var(--green);cursor:pointer}
+  .st{font-weight:600;margin:0 0 4px}
+  .sd{font-size:14px;color:var(--sec);margin:0 0 8px}
+  .idx{color:var(--sec);margin-right:6px}
+
+  /* progress */
+  .prog{display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--bd);border-radius:12px;padding:16px 20px;background:var(--surf);margin:16px 0 24px}
+  .bar{height:8px;border-radius:999px;background:var(--surf2);overflow:hidden}
+  .bar>span{display:block;height:100%;width:0;background:var(--green);border-radius:999px}
+  .barwrap{flex:1 1 240px;min-width:180px}
+  button.btn{font:inherit;font-size:14px;font-weight:600;color:var(--text);background:var(--canvas);border:1px solid var(--bd);border-radius:8px;padding:10px 16px;min-height:44px;cursor:pointer}
+  button.btn:hover{background:var(--surf2)}
+
+  /* inputs */
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:14px;font-weight:600}
+  input[type=text],input[type=date],input[type=number],select{font:inherit;font-size:15px;color:var(--text);background:var(--canvas);
+    border:1px solid var(--bd);border-radius:8px;padding:10px 12px;min-height:44px;width:100%}
+  .toolrow{display:grid;gap:12px;grid-template-columns:repeat(3,1fr);align-items:end}
+  .result{margin-top:16px;border:1px solid var(--bd);border-radius:12px;background:var(--surf);padding:16px 20px}
+  .result .kpi{margin-bottom:4px}
+
+  /* timeline */
+  ul.tl{list-style:none;margin:16px 0 0;padding:0 0 0 24px;border-left:2px solid var(--bd)}
+  ul.tl li{position:relative;padding:0 0 24px 8px}
+  ul.tl li:last-child{padding-bottom:0}
+  ul.tl li::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--canvas);border:2px solid var(--sec)}
+  ul.tl li.is-blue::before{border-color:var(--blue)}
+  ul.tl li.is-orange::before{border-color:var(--orange)}
+  ul.tl li.is-red::before{border-color:var(--red)}
+  ul.tl .tld{font-size:14px;color:var(--sec)}
+  ul.tl .tlt{font-weight:600}
+
+  footer{border-top:1px solid var(--bd);padding:24px 0 48px;font-size:14px;color:var(--sec)}
+  footer p{margin:0 0 8px}
+
+  @media (max-width:860px){.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.toolrow{grid-template-columns:1fr}}
+  @media (max-width:720px){.wrap{padding:0 20px}h2{font-size:23px}h3{font-size:19px}main{padding:28px 0 72px}}
+  @media (max-width:720px){table{min-width:760px}td,th{padding:12px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <h1>계약 운영 사이트</h1>
+      <span class="tagline">우즈베키스탄 Hududgaz 가스 누출 감축사업 · ERDFA 통합본 기준</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="섹션">
+      <button role="tab" id="tab-overview" aria-controls="p-overview" aria-selected="true">개요</button>
+      <button role="tab" id="tab-flow" aria-controls="p-flow" aria-selected="false">업무 흐름</button>
+      <button role="tab" id="tab-trigger" aria-controls="p-trigger" aria-selected="false">트리거 A~J</button>
+      <button role="tab" id="tab-money" aria-controls="p-money" aria-selected="false">자금·정산</button>
+      <button role="tab" id="tab-sale" aria-controls="p-sale" aria-selected="false">판매 체크리스트</button>
+      <button role="tab" id="tab-deadline" aria-controls="p-deadline" aria-selected="false">기한 통제표</button>
+      <button role="tab" id="tab-cal" aria-controls="p-cal" aria-selected="false">캘린더</button>
+      <button role="tab" id="tab-clause" aria-controls="p-clause" aria-selected="false">조항·용어</button>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- ============ 개요 ============ -->
+<section class="panel" id="p-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+  <h2>개요</h2>
+  <p class="lede">에코아이가 프로젝트 비용을 투자하고 GGA가 우즈베키스탄 현지에서 사업을 수행합니다. 배출권은 에코아이 계정으로 발급·판매하며, 판매대금은 발행비와 판매 부대비용을 먼저 차감하고 투자금·운영비를 회수한 뒤 NDF 배분 구조로 정산합니다.</p>
+
+  <div class="call blue">
+    <p><b>기준 문서</b> — 원계약(2023.08.10) + 제1~7차 변경합의서 + 사이드레터(2026.05.15) 통합본. 충돌 시 사이드레터가 우선합니다.</p>
+    <p class="small muted">이 사이트는 업무 이해용 안내서이며, 법적 해석은 서명된 영문 원문과 법률 검토를 우선합니다.</p>
+  </div>
+
+  <h3>계약 한눈에 보기</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">항목</th><th>내용</th><th class="nowrap">근거</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">계약명</td><td>Emissions Reduction Development Funding Agreement (ERDFA) · 배출감축사업 개발자금 계약</td><td class="nowrap">통합본 표제</td></tr>
+      <tr><td class="nowrap">당사자</td><td>투자자 에코아이(ECOEYE CO., LTD.) ↔ 개발자 GGA(GASGREEN ASIA LLC)</td><td class="nowrap">통합본 서두</td></tr>
+      <tr><td class="nowrap">대상 사업</td><td>우즈베키스탄 Hududgaz 가스 배관망 누출 감축</td><td class="nowrap">별표 1</td></tr>
+      <tr><td class="nowrap">계약 기간</td><td>최초 감축 발생일부터 10년, 상호 합의 시 5년 연장</td><td class="nowrap">제1조, 별표 1</td></tr>
+      <tr><td class="nowrap">투자 마일스톤</td><td><b>USD 8,058,234</b></td><td class="nowrap">별표 1</td></tr>
+      <tr><td class="nowrap">배출권</td><td>에코아이 Verra 계정으로 발급·수령하고 법적 소유도 에코아이</td><td class="nowrap">제3.2~3.3조</td></tr>
+      <tr><td class="nowrap">판매·대금</td><td>에코아이가 판매계약 당사자로 대금을 수령한 뒤 워터폴로 정산</td><td class="nowrap">제3.4조, 제6.1조</td></tr>
+      <tr><td class="nowrap">준거법·분쟁</td><td>뉴욕주법 / ICC 단독 중재, 중재지 뉴욕, 영어</td><td class="nowrap">제16.5조, 제15.1조</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>가치사슬 5단계</h3>
+  <div class="grid g3">
+    <div class="card"><div class="pill blue">1 · 투자·예산</div><h4>마일스톤·연간예산</h4><p>연간예산 승인과 자금 집행. GGA 요청 / 에코아이 승인</p></div>
+    <div class="card"><div class="pill blue">2 · 사업 수행</div><h4>현지 설비 개선</h4><p>운영비 집행과 증빙 보관. GGA 주관</p></div>
+    <div class="card"><div class="pill blue">3 · 발급·승인</div><h4>검증·Verra 발급</h4><p>발급 즉시 유보 20% 분리, 상응조정 확보. GGA 주도 / 에코아이 자금</p></div>
+    <div class="card"><div class="pill green">4 · 판매·수령</div><h4>판매 가능 80%만</h4><p>판매계약 체결과 대금 수령. 에코아이 주관</p></div>
+    <div class="card"><div class="pill green">5 · 회수·배분</div><h4>워터폴 정산</h4><p>선차감 → 투자금 회수 → 운영비 → NDF 배분. 에코아이 주관</p></div>
+    <div class="card"><div class="pill orange">현재 국면</div><h4>한시적 재조정 구간</h4><p>사이드레터에 따른 일회성 구간(누적 NDF USD 3,333,333) 적용 중</p></div>
+  </div>
+
+  <h3>문서 체계와 우선순위</h3>
+  <div class="call orange"><p>충돌 시 <b>사이드레터가 우선</b>합니다. 계약 변경은 서면 합의로만 유효하며(제16.12조) 구두 합의는 효력이 없습니다.</p></div>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">순위</th><th class="nowrap">문서</th><th class="nowrap">효력일</th><th>핵심 내용</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap"><span class="pill red">1순위</span></td><td class="nowrap">사이드레터</td><td class="nowrap">2026.05.15</td><td>초과투자금 12% 프리미엄, LDC 판매 특례와 한시 배분, 76.25% 세부 구조, 사회공헌자금(SP Funds), 법률비용 절차</td></tr>
+      <tr><td class="nowrap"><span class="pill orange">2순위</span></td><td class="nowrap">제7차 변경합의서</td><td class="nowrap">2026.05.15</td><td>제6조 전면 개편 — 선차감, 워터폴, CA Longstop, 이후 판매 배분. 제4.2·4.10·4.13조 개정</td></tr>
+      <tr><td class="nowrap"><span class="pill orange">2순위</span></td><td class="nowrap">제6차 변경합의서</td><td class="nowrap">2026.04.09</td><td>CORSIA 라벨 대상 확대와 향후 판매 상호 승인</td></tr>
+      <tr><td class="nowrap"><span class="pill orange">2순위</span></td><td class="nowrap">제5차 변경합의서</td><td class="nowrap">2026.03.09</td><td>공동 주관기관, Verra VCS·연회비, 개발자 현금계좌, 추가자금 절차, CORSIA 보험, 정의 다수 추가</td></tr>
+      <tr><td class="nowrap"><span class="pill orange">2순위</span></td><td class="nowrap">제4차 변경합의서</td><td class="nowrap">2025.09.26</td><td>연간예산 마일스톤 도입과 지급 기한 30영업일</td></tr>
+      <tr><td class="nowrap"><span class="pill orange">2순위</span></td><td class="nowrap">제3차 / 제2차</td><td class="nowrap">2025.05.22 / 2025.02.21</td><td>통합본에 개별 표시가 없어 필요 시 원문 대조 필요</td></tr>
+      <tr><td class="nowrap"><span class="pill orange">2순위</span></td><td class="nowrap">제1차 변경합의서</td><td class="nowrap">2024.10.02</td><td>별표 1·2 개정, 투자금·초과투자금 체계, 즉시 통지, 호스트국 리스크 조항(15.3) 신설</td></tr>
+      <tr><td class="nowrap"><span class="pill">기본</span></td><td class="nowrap">원계약 ERDFA</td><td class="nowrap">2023.08.10</td><td>당사자, 프로젝트 개발, 배출권, 자금조달, 채무불이행, 분쟁, 정의</td></tr>
+      <tr><td class="nowrap"><span class="pill">부속</span></td><td class="nowrap">별표 1 · 2</td><td class="nowrap">제1차 개정</td><td>별표 1 프로젝트 상업조건 / 별표 2 비용 증빙 서식</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <p><b>실무 적용 순서</b></p>
+    <ul>
+      <li>현재 통합계약으로 조항 위치를 확인합니다.</li>
+      <li>해당 조항에 사이드레터 표시가 있는지 확인합니다.</li>
+      <li>필요하면 해당 차수 변경합의서 원문을 대조합니다.</li>
+      <li>해석이 갈리면 법률 검토를 요청합니다.</li>
+    </ul>
+  </div>
+
+  <h3>첫 5일 인수인계 점검표</h3>
+  <ol class="steps" id="handover">
+    <li class="step"><label class="box"><input type="checkbox" data-id="h1" aria-label="문서 우선순위 확인 습관" /></label><div><p class="st">문서 우선순위를 사이드레터 → 변경 반영 조항 → 원계약 순서로 확인하는 습관 만들기</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h2" aria-label="배출권 소유 판매 구조 확인" /></label><div><p class="st">제3조 배출권 소유·판매 구조 확인</p><p class="sd">계정 주체, 판매계약 당사자, 대금 수령 주체</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h3" aria-label="GGA 의무 확인" /></label><div><p class="st">제4조 GGA 의무 확인</p><p class="sd">현지 수행, 등록·발급, 보고, 비용관리</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h4" aria-label="자금 승인 경로 확인" /></label><div><p class="st">제5조 자금 승인 경로와 기한 확인</p><p class="sd">마일스톤, 연간예산, 추가자금</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h5" aria-label="최근 판매 1건 직접 계산" /></label><div><p class="st">최근 판매 1건으로 선차감부터 NDF 배분까지 직접 계산해 보기</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h6" aria-label="유보 20% 분리 현황 대조" /></label><div><p class="st">빈티지별 발급량과 유보 20% 분리 현황 대조</p><p class="sd">발급 시점에 분리되었는지, 판매 풀에 유보분이 섞이지 않았는지 확인</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h7" aria-label="한시적 재조정 진행 상황 확인" /></label><div><p class="st">한시적 재조정 진행 상황 확인 — 누적 NDF USD 3,333,333 도달 여부와 잔액</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h8" aria-label="CA 기한 캘린더 등록" /></label><div><p class="st">빈티지별 CA Longstop Date와 9 Month Date, 1개월 정산 기한 캘린더 등록</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h9" aria-label="최근 판매 정산 자료 대조" /></label><div><p class="st">최근 판매·정산 자료 대조 — 수량, 단가, 차감 비용, 송금 내역</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h10" aria-label="운영비 증빙 폴더 확인" /></label><div><p class="st">운영비 증빙 폴더 위치 확인 — 인보이스, 영수증, 승인 문서, 별표 2 서식</p></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="h11" aria-label="주요 연락처 승인권자 확인" /></label><div><p class="st">주요 연락처와 승인권자 확인 — 에코아이 통지처, GGA Lead Contact, EKS, Verra 계정 관리자</p></div></li>
+  </ol>
+</section>
+
+<!-- ============ 업무 흐름 ============ -->
+<section class="panel" id="p-flow" role="tabpanel" aria-labelledby="tab-flow" tabindex="0" hidden>
+  <h2>업무 흐름 7단계</h2>
+  <p class="lede">계획부터 사후관리까지의 정상 흐름입니다. 각 단계의 주관과 근거 조항, 연결 원고를 함께 표시했습니다.</p>
+
+  <details open><summary><span class="code">1</span>계획·예산 <span class="pill">GGA 작성 / 에코아이 승인</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>연간예산(Operating Cost) 초안 작성과 에코아이 승인 <span class="pill">원고 B-01</span></li>
+        <li>연간예산 마일스톤 통지와 증빙 검토 <span class="pill">원고 B-02</span></li>
+        <li>초과운영비 발생 가능성 사전 점검 <span class="pill">원고 B-03</span></li>
+      </ul>
+      <div class="call"><p class="small">별표 1의 Project Milestone Notice(제5.1~5.2조 · 수령 후 30일 역일 · 개발비)는 사업 초기 일회성 지급 단위로 이미 완료되었습니다. 앞으로 반복되는 통지는 연간예산 마일스톤 통지(제5.3조 · 30영업일 · 운영비)입니다.</p></div>
+      <p class="small muted">근거: 제5.3조(제4차 변경), 제5.9조</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">2</span>현지 수행 <span class="pill">GGA</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>Hududgaz 협의와 배관망 누출 감축 설비 개선</li>
+        <li>운영비 집행과 증빙 보관(별표 2 서식) <span class="pill">원고 B-02</span></li>
+        <li>분기 종료 후 1개월 내 보고 <span class="pill">원고 B-07</span></li>
+      </ul>
+      <p class="small muted">근거: 제4.1~4.4조, 제4.12조</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">3</span>모니터링·검증 <span class="pill">GGA / 에코아이 확인</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>모니터링 보고서 작성과 검증기관 검증 <span class="pill">원고 N-01</span> <span class="pill">원고 N-02</span></li>
+        <li>에코아이 요청 자료 10영업일 내 제공 <span class="pill">원고 B-09</span></li>
+      </ul>
+      <p class="small muted">근거: 제4.5조, 제4.13조</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">4</span>발급·라벨 <span class="pill">GGA 주도 / 에코아이 자금</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>Verra 등록·발급과 레지스트리 연회비 관리 <span class="pill">원고 N-03</span> <span class="pill">원고 B-08</span></li>
+        <li><b>발급 즉시</b> 해당 빈티지 발급량의 20%를 유보배출권으로 분리 지정하고 판매 가능 물량을 80%로 확정 <span class="pill">원고 B-05</span></li>
+        <li>유보분은 미판매·무담보 상태로 에코아이 Verra 계정에 보유하고 빈티지별 대장에 기록</li>
+        <li>CORSIA 라벨·보험과 A6 라벨비 산정 대상은 유보분을 반영해 판매 가능 물량 기준으로 확정 <span class="pill">원고 N-04</span></li>
+        <li>발행비 처리(선납 또는 판매대금 선차감) <span class="pill">원고 N-03</span></li>
+        <li>상응조정(CA) 및 허가서(LoA) 관련 정부 절차 <span class="pill">원고 B-04</span></li>
+      </ul>
+      <p class="small muted">근거: 제4.5조, 제5.10조, 제6.1.1~6.1.2조</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">5</span>판매·이전 <span class="pill">에코아이</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>4단계에서 분리한 유보분을 제외한 판매 가능 물량만 판매 대상에 편입 <span class="pill">원고 B-05</span></li>
+        <li>판매계약 체결과 대금 수령 <span class="pill">원고 N-05</span></li>
+        <li>판매·이전 부대비용 선차감 사전 통지(최소 5영업일 전) <span class="pill">원고 N-06</span></li>
+      </ul>
+      <p class="small muted">근거: 제3.4조, 제6.1.1~6.1.2조</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">6</span>정산·배분 <span class="pill">에코아이</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>판매대금 수령 후 20영업일 내 워터폴 분배 <span class="pill">원고 N-06</span></li>
+        <li>투자금과 초과투자금(12% 프리미엄 포함) 회수 정산 <span class="pill">원고 B-03</span></li>
+        <li>한시적 재조정 구간 누적액 관리 <span class="pill">원고 H-02</span></li>
+      </ul>
+      <p class="small muted">근거: 제6.1.1~6.1.2조, 사이드레터 제6~8항</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">7</span>CA·사후관리 <span class="pill">공동</span></summary>
+    <div class="dbody">
+      <ul>
+        <li>BTR 반영 여부 확인과 CA Longstop 판단 <span class="pill">원고 B-04</span> <span class="pill">원고 E-01</span></li>
+        <li>9개월 기한 관리, 기한 후 1개월 내 정산·증빙 <span class="pill">원고 E-02</span></li>
+        <li>유보배출권 처리(이전·취소 또는 합의 매각) <span class="pill">원고 B-05</span> <span class="pill">원고 E-03</span></li>
+      </ul>
+      <p class="small muted">근거: 제6.1.4~6.1.5조, 사이드레터 제21~22항</p>
+    </div>
+  </details>
+
+  <h3>역할과 책임</h3>
+  <div class="grid g3">
+    <div class="card">
+      <h4>에코아이 (투자자)</h4>
+      <p style="margin-top:8px">마일스톤 개발비 30일 지급 · 연간예산 승인과 30영업일 지급 · 1차 발행비 선납 · Verra 계정 보유와 법적 소유 · 판매계약 체결과 20영업일 워터폴 분배 · 사회공헌 정보 15영업일 회신 · 권고 법률비용 7영업일 회신 · 발급 18개월 지연 시 마일스톤 유보</p>
+    </div>
+    <div class="card">
+      <h4>GGA (개발자)</h4>
+      <p style="margin-top:8px">현지 개발·운영과 Hududgaz 협의 · 모니터링·검증·등록·발급과 Verra 연회비 · 분기보고(1개월)와 자료 제공(10영업일) · 호스트국 세금·비정기비용·법률비용 관리 · EKS를 통한 SP Funds 집행 · 중대 사건 즉시 통지 · 우즈베키스탄 내 유사 사업 배타성</p>
+    </div>
+    <div class="card">
+      <h4>공동 결정 사항</h4>
+      <p style="margin-top:8px">공동 주관기관 지정·승인 · 추가 보험·CORSIA 라벨과 향후 판매 상호 승인 · 추가자금 협의(10+10영업일) · 유보배출권 매각 합의와 CA 전략 · 계약 변경은 서면 합의만 유효</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 트리거 ============ -->
+<section class="panel" id="p-trigger" role="tabpanel" aria-labelledby="tab-trigger" tabindex="0" hidden>
+  <h2>트리거 A~J</h2>
+  <p class="lede">활동이 발생하면 ① 대분류에서 계열을 찾고 → ② 구체 트리거를 특정한 뒤 → ③ 액션 체인(순서·담당·기한)으로 이동합니다. D·E·F는 전체 액션 체인이 작성되어 있고, 나머지 계열은 대표 트리거와 연결 원고로 안내합니다.</p>
+
+  <div class="call"><p class="small"><b>두 축의 관계</b> — 이 대분류는 <b>이벤트 계열</b> 축이고, 원고 DB의 분류(정상 반복 · 상시·병행 · 예외 · 한시특례·이력)는 <b>반복 빈도</b> 축입니다. 두 축은 교차하므로 하나의 원고가 여러 대분류의 체인에 등장할 수 있습니다.</p></div>
+
+  <h3>정상 흐름 — 가치사슬 순서</h3>
+
+  <details><summary><span class="code">A</span>자금 투입 <span class="pill">GGA 요청 → 에코아이 승인·지급</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — 마일스톤 완료·증빙 제출 / 연간예산 초안 요청 / 연간예산 마일스톤 통지 / 초과자금 필요 발생</p>
+      <div class="tscroll"><table><thead><tr><th>핵심 기한</th><th>담당</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td>연간예산 초안 제출 — 요청일부터 15영업일</td><td>GGA</td><td class="nowrap">5.3</td></tr>
+        <tr><td>연간예산 마일스톤 지급 — 통지·증빙 수령 후 30영업일</td><td>에코아이</td><td class="nowrap">5.3(제4차)</td></tr>
+        <tr><td>개발비 지급 — 수령 후 30일(역일)</td><td>에코아이</td><td class="nowrap">5.1</td></tr>
+        <tr><td>추가자금 — 협의 10영업일 + 검토 10영업일</td><td>공동</td><td class="nowrap">5.8~5.9</td></tr>
+      </tbody></table></div>
+      <p class="small muted">연결 원고: B-01 연간예산 수립·승인 및 변경 · B-02 GGA 자금 지급 요청 처리 · B-03 초과자금 협의 및 지급</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">B</span>사업 수행·보고 <span class="pill">GGA 이행 / 에코아이 확인</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — 분기 종료 / 자료·재무제표 요청 / 현장 접근 요청 / 프로젝트 중대 사건 발생</p>
+      <div class="tscroll"><table><thead><tr><th>핵심 기한</th><th>담당</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td>분기 운영·재무 보고 — 분기 종료 후 1개월</td><td>GGA</td><td class="nowrap">4.12</td></tr>
+        <tr><td>자료·정보 제공 — 10영업일</td><td>GGA</td><td class="nowrap">4.13(제7차)</td></tr>
+        <tr><td>재무제표 제출 — 20영업일</td><td>GGA</td><td class="nowrap">5.7</td></tr>
+        <tr><td>프로젝트 중대 사건 — 즉시 통지</td><td>GGA</td><td class="nowrap">4.9(제1차)</td></tr>
+      </tbody></table></div>
+      <p class="small muted">연결 원고: B-07 사업 진행·예산 집행 점검 및 감사 · B-09 외부 자료 제공 및 비밀유지</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">C</span>인증·발행 <span class="pill">GGA 주도 / 에코아이 자금</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — 모니터링 기간 종료 / 검증기관 보완 요구 / Verra 발행 완료 / 발행 수수료·연회비 청구</p>
+      <div class="call orange"><p class="small">발행이 완료되면 <b>즉시</b> 해당 빈티지 발급량의 20%를 유보배출권으로 분리하고 판매 가능 물량을 80%로 확정해야 합니다(제6.1.2조). 발급이 끝난 뒤 물량 전체가 판매 풀에 들어가면 유보분 확보가 늦어집니다.</p></div>
+      <p class="small muted">근거: 4.5, 6.1.1 · 연결 원고: N-01 감축량 모니터링 · N-02 검증 및 보완자료 제출 · N-03 배출권 발행 및 수수료 처리 · B-08 등록부 운영 및 공동 승인</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">D</span>라벨·상응조정 <span class="pill blue">전체 체인</span> <span class="pill">공동</span></summary>
+    <div class="dbody">
+      <p><b>주 트리거</b> — 발행된(또는 발행 예정) 물량에 CORSIA 라벨과 상응조정(CA) 확보가 필요</p>
+      <p><b>종료점</b> — 합의 물량의 라벨링 완료와 해당 빈티지 CA의 BTR 반영 확인 → E 판매·인도로 인계</p>
+
+      <h4>1단계 · 대상 확정과 보험 가입</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">D-01</td><td>라벨·보험 대상 물량 합의 — 기존 합의 물량 외 추가분은 <b>상호 서면 합의</b></td><td class="nowrap">양사</td><td class="nowrap">견적 요청 전</td><td class="nowrap">5.10, 5.10(h)</td></tr>
+        <tr><td class="nowrap">D-02</td><td>보험 견적·조건 제출 — Verra 승인 보험사 상품 확보 노력, <b>전체 비용</b> 제시</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">기한 없음</td><td class="nowrap">5.10(a)~(d)</td></tr>
+        <tr><td class="nowrap">D-03</td><td>사전 동의 회신 — 동의 전에는 GGA가 비용 부담·체결을 확약하지 않음</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap">기한 없음</td><td class="nowrap">5.10(d)~(e)</td></tr>
+        <tr><td class="nowrap">D-04</td><td>보험계약 체결과 체결본 제공</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">동의 후</td><td class="nowrap">5.10(e)</td></tr>
+        <tr><td class="nowrap">D-05</td><td>보험비용 지급 — 합의 보험비용 전액, <b>Investor's Excess Contribution</b>으로 계상</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap"><b>체결본 수령 후 15일(역일)</b></td><td class="nowrap">5.10(e)~(f)</td></tr>
+        <tr><td class="nowrap">D-06</td><td>보험료·관련 비용 납부</td><td class="nowrap">GGA → 보험사</td><td class="nowrap">보험계약상 기한</td><td class="nowrap">5.10(e)</td></tr>
+      </tbody></table></div>
+
+      <h4>2단계 · 라벨링과 CA 추진</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">D-07</td><td>합의 물량의 CORSIA 라벨링 진행</td><td class="nowrap">양사</td><td class="nowrap">기한 없음</td><td class="nowrap">5.10(h)</td></tr>
+        <tr><td class="nowrap">D-08</td><td><span class="pill blue">조건부</span> 등록부 라벨 수수료가 별도 청구되면 납부 당사자·납기 확인. 제6.1.1조 등록부 비용이면 워터폴 전 선차감</td><td class="nowrap">납부 당사자</td><td class="nowrap">청구서상 납기</td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">D-09</td><td>CA 요청과 정부 협의 주도 — 정부·Hududgaz 협의와 CA 이행 절차</td><td class="nowrap">GGA → 정부</td><td class="nowrap">기한 없음</td><td class="nowrap">4.5, 4.6, 4.10</td></tr>
+        <tr><td class="nowrap">D-10</td><td>협조 이행 — CA에 필요한 서명·문서 제공</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap">요청 수령 시</td><td class="nowrap">8.1, 8.3</td></tr>
+        <tr><td class="nowrap">D-11</td><td><span class="pill blue">조건부</span> 신규 정부 요구·Host Country Tax·Unscheduled Costs·Legal Costs를 알게 되면 CA 영향과 함께 통지</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap"><b>신속</b></td><td class="nowrap">SL 23</td></tr>
+      </tbody></table></div>
+
+      <h4>3단계 · 기한 점검과 결과 처리</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">D-12</td><td>빈티지별 기한 대장 관리 — CA Longstop Date와 9 Month Date 등록·점검</td><td class="nowrap">에코아이</td><td class="nowrap">상시</td><td class="nowrap">6.1.4</td></tr>
+        <tr><td class="nowrap">D-13</td><td>완료 확인 — 정부의 CA 조치와 BTR 반영을 <b>구분해</b> 증빙으로 확인. 요청서 제출만으로 완료 처리하지 않음</td><td class="nowrap">양사</td><td class="nowrap">Longstop 도래 전</td><td class="nowrap">6.1.4</td></tr>
+        <tr><td class="nowrap">D-14</td><td><span class="pill blue">조건부</span> CA 완료 후 정부 지시에 따른 GGA 요청 시 유보분 이전 또는 취소</td><td class="nowrap">에코아이</td><td class="nowrap">요청 후 <b>10영업일</b></td><td class="nowrap">6.1.2</td></tr>
+        <tr><td class="nowrap">D-15</td><td>내부 기록 보관 — 물량 합의서, 견적·사전 동의, 보험 체결본·송금증, 라벨 상태, 빈티지별 요청일·기한·회신·BTR 증빙</td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">내부 관리</td></tr>
+        <tr><td class="nowrap">⇥ E</td><td><span class="pill green">인계</span> 라벨·보험 적용 상태 확정 시 판매 전 대조 단계로 이동</td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">5.10(h)</td></tr>
+        <tr><td class="nowrap">⇥ J</td><td><span class="pill red">예외</span> Longstop까지 미완료 또는 보험 보상사유 발생 시 J 체인 소관</td><td class="nowrap">사안별</td><td class="nowrap">Longstop 경과 즉시</td><td class="nowrap">6.1.4, 5.10(g)</td></tr>
+      </tbody></table></div>
+
+      <div class="call orange">
+        <p><b>자주 틀리는 지점</b></p>
+        <ul>
+          <li>D-05의 15일은 <b>역일</b>이며 15영업일이 아닙니다. 에코아이의 지급기한과 GGA의 보험사 납기는 별개입니다.</li>
+          <li>에코아이가 지급한 합의 보험비용 전액은 Investor's Excess Contribution으로 워터폴 (a)-i에서 연 12% 단리와 함께 회수합니다. 같은 보험료를 운영비나 Unscheduled Costs에서 다시 공제하지 않습니다.</li>
+          <li>보험료에 포함되지 않은 등록부 라벨 수수료를 일괄로 Excess Contribution으로 처리하지 않습니다.</li>
+          <li>CA 요청서 제출과 BTR 반영은 별개 사건입니다. 모든 발행 물량이 보험으로 담보된다고 전제하지 않습니다(5.10(b)).</li>
+        </ul>
+      </div>
+      <p class="small muted">연결 원고: N-04 CORSIA 보험 가입 및 라벨링 · B-04 CA 진행 현황 및 빈티지별 기한 점검 · B-05 유보 배출권 이전·취소 · E-01 CA Longstop 도래 시 미완료 대응 · E-05 상응조정 실패 시 보험금 청구 및 대체 배출권 구매</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">E</span>판매·인도 <span class="pill blue">전체 체인</span> <span class="pill">에코아이</span></summary>
+    <div class="dbody">
+      <p><b>주 트리거</b> — 판매 가능 물량에 대해 구매자와 조건 협의에 착수 &nbsp;·&nbsp; <b>종료점</b> — 판매·이전 비용 정산 완료 → F 정산·배분으로 인계</p>
+
+      <h4>1단계 · 판매 전 — 물량·자격·조건</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">E-01</td><td>판매 가능 물량 확정 — 발급량에서 유보 20%를 제외한 80%만 판매 풀에 편입</td><td class="nowrap">에코아이</td><td class="nowrap">협의 착수 전</td><td class="nowrap">6.1.2</td></tr>
+        <tr><td class="nowrap">E-02</td><td>라벨·보험 적용 상태 대조 — 등록부·보험계약 기록과 대조하고 부족분은 GGA와 협의</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap">기한 없음</td><td class="nowrap">5.10(h)</td></tr>
+        <tr><td class="nowrap">E-03</td><td>판매 조건 협의 — 수량·가격·인도·대금. 최선의 상업적 조건 확보에 합리적 노력</td><td class="nowrap">에코아이</td><td class="nowrap">기한 없음</td><td class="nowrap">3.2~3.4</td></tr>
+        <tr><td class="nowrap">E-04</td><td><span class="pill blue">조건부</span> 제5.10(h)조 대상 물량이면 상호 서면 물량 합의·상호 승인</td><td class="nowrap">양사</td><td class="nowrap">계약 체결 전</td><td class="nowrap">5.10(h)</td></tr>
+        <tr><td class="nowrap">E-05</td><td><span class="pill blue">조건부</span> KOC 전환 — 에코아이 주도, GGA 문서·서명 협조</td><td class="nowrap">에코아이 / GGA</td><td class="nowrap">인도 전</td><td class="nowrap">3.3, 4.11</td></tr>
+      </tbody></table></div>
+
+      <h4>2단계 · 체결·인도</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">E-06</td><td>판매계약 체결 — <b>에코아이가 반드시 계약 당사자</b></td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">3.4</td></tr>
+        <tr><td class="nowrap">E-07</td><td><span class="pill blue">조건부</span> 대금 수령 계좌 변경 시 서면 통지</td><td class="nowrap">변경 당사자</td><td class="nowrap"><b>최소 5영업일 전</b></td><td class="nowrap">6.3</td></tr>
+        <tr><td class="nowrap">E-08</td><td>배출권 인도</td><td class="nowrap">에코아이 → 구매자</td><td class="nowrap"><b>매매계약상 인도일</b></td><td class="nowrap">3.4, 4.11</td></tr>
+        <tr><td class="nowrap">E-09</td><td>판매대금 입금 확인 — 지정통화 외 수령 시 <b>수익 실현일 환율</b></td><td class="nowrap">에코아이</td><td class="nowrap"><b>매매계약상 지급일</b></td><td class="nowrap">6.2</td></tr>
+      </tbody></table></div>
+
+      <h4>3단계 · 비용 정산 후 F 인계</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">E-10</td><td>판매·이전·등록부 비용 회수 사전 통지와 합리적 증빙 제공</td><td class="nowrap">비용 부담 당사자</td><td class="nowrap">회수 <b>최소 5영업일 전</b></td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">E-11</td><td>판매·이전 비용 정산 — Waterfall 적용 <b>전</b> 우선 회수. Contribution에 산입하지 않음</td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">E-12</td><td>내부 기록 보관 — 매매계약, 인도 확인자료, 대금 수령 내역, 정산명세서</td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">내부 관리</td></tr>
+        <tr><td class="nowrap">⇥ F-01</td><td><span class="pill green">인계</span> Waterfall 정산 및 GGA 지급</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap"><b>대금 수령과 비용 정산 완료 후 20영업일</b></td><td class="nowrap">6.1.1</td></tr>
+      </tbody></table></div>
+
+      <div class="call orange">
+        <p><b>자주 틀리는 지점</b></p>
+        <ul>
+          <li>F-01의 20영업일은 <b>대금 수령과 판매·이전 비용 정산이 모두 완료된 후</b>부터 기산합니다. 입금일 단독 기산이 아닙니다.</li>
+          <li>이 20영업일은 구매자에 대한 인도기한도, 등록부 수수료 납부기한도 아닙니다.</li>
+          <li>상호 승인·서면 물량 합의는 제5.10(h)조 대상 물량에만 적용됩니다. 일반 판매에 GGA 승인 단계를 추가하지 않습니다.</li>
+          <li>LDC 판매 특례·USD 3,333,333 한시 배분·CA 미완료 유보분 예외판매는 <b>배분 비율</b>에 관한 사항으로 F·J 체인에서 다룹니다.</li>
+        </ul>
+      </div>
+      <p class="small muted">연결 원고: N-04 · N-05 판매계약 체결 및 배출권 인도 · N-06 판매대금 정산 및 배분 · B-05</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">F</span>정산·배분 <span class="pill blue">전체 체인</span> <span class="pill">에코아이</span></summary>
+    <div class="dbody">
+      <p><b>주 트리거</b> — 판매대금 입금 확인과 판매·이전 비용 정산이 모두 완료 &nbsp;·&nbsp; <b>종료점</b> — 워터폴 분배 집행과 누적 NDF 대장 갱신 완료</p>
+
+      <h4>1단계 · 정산 기초 확정</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">F-01</td><td>20영업일 기산점 확정 — 대금 수령일과 비용 정산 완료일 중 <b>나중 날짜</b></td><td class="nowrap">에코아이</td><td class="nowrap">두 조건 충족 시점</td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">F-02</td><td>통화 환산 — 지정통화 외 수령 시 <b>수익 실현일 환율</b>, 근거 보관</td><td class="nowrap">에코아이</td><td class="nowrap">입금 확인 시</td><td class="nowrap">6.2</td></tr>
+        <tr><td class="nowrap">F-03</td><td>선차감 항목 확정 — 발행비, 판매·이전 비용, 레지스트리 수수료를 실비 전액으로 집계</td><td class="nowrap">에코아이</td><td class="nowrap">워터폴 계산 전</td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">F-04</td><td><span class="pill blue">조건부</span> 3차 모니터링 이후 발행비 포함 시 공정·형평 분담 서면 합의</td><td class="nowrap">양사</td><td class="nowrap">차감 전</td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">F-05</td><td>한시 재조정 구간 판정 — 누적 NDF USD 3,333,333 문턱. 걸치는 판매는 <b>구간 분할</b></td><td class="nowrap">에코아이</td><td class="nowrap">워터폴 계산 전</td><td class="nowrap">SL 3~7</td></tr>
+      </tbody></table></div>
+
+      <h4>2단계 · 워터폴 계산·집행</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">F-06</td><td>(a)-i 초과투자금 회수 — 각자 부담 비율 + <b>단리 연 12% 프리미엄</b></td><td class="nowrap">에코아이</td><td class="nowrap">선차감 직후</td><td class="nowrap">6.1.2(a), SL 1</td></tr>
+        <tr><td class="nowrap">F-07</td><td>(a)-ii 투자금 회수 — 에코아이 79.95 : GGA 20.05</td><td class="nowrap">에코아이</td><td class="nowrap">(a)-i 완료 후</td><td class="nowrap">6.1.2(a)</td></tr>
+        <tr><td class="nowrap">F-08</td><td>(b) 운영비 충당 — 승인 연간예산을 <b>개발자 현금계좌</b>로 지급</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap">(a) 완료 후</td><td class="nowrap">6.1.2(b), 5.4</td></tr>
+        <tr><td class="nowrap">F-09</td><td><span class="pill blue">조건부</span> (b)를 (a)보다 선행 집행하기로 서면 합의한 경우 투자금에 가산</td><td class="nowrap">양사</td><td class="nowrap">합의 시</td><td class="nowrap">6.1.2(b)</td></tr>
+        <tr><td class="nowrap">F-10</td><td>(c) NDF 배분 — 정상 23.75% + 76.25% / 한시 38% + 62%</td><td class="nowrap">에코아이</td><td class="nowrap">(b) 완료 후</td><td class="nowrap">6.1.2(c), SL 6~8</td></tr>
+        <tr><td class="nowrap">F-11</td><td>GGA 지급 실행 — 지정 계좌 송금</td><td class="nowrap">에코아이 → GGA</td><td class="nowrap"><b>기산일부터 20영업일</b></td><td class="nowrap">6.1.1</td></tr>
+        <tr><td class="nowrap">F-12</td><td><span class="pill blue">조건부</span> 계좌·레지스트리·주소 변경 시 서면 통지</td><td class="nowrap">변경 당사자</td><td class="nowrap"><b>최소 5영업일 전</b></td><td class="nowrap">6.3</td></tr>
+      </tbody></table></div>
+
+      <h4>3단계 · 사후 관리·인계</h4>
+      <div class="tscroll"><table><thead><tr><th class="nowrap">#</th><th>액션</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td class="nowrap">F-13</td><td>누적 NDF 대장 갱신 — 문턱 도달 시 이후 판매부터 정상 구조로 자동 복귀</td><td class="nowrap">에코아이</td><td class="nowrap">지급 직후</td><td class="nowrap">SL 3~7</td></tr>
+        <tr><td class="nowrap">F-14</td><td><span class="pill blue">조건부</span> 지급 기한 초과분에 <b>연 6% 지연이자</b> 산정</td><td class="nowrap">지급 당사자</td><td class="nowrap">지연 기간 전체</td><td class="nowrap">6.4</td></tr>
+        <tr><td class="nowrap">F-15</td><td>내부 기록 보관 — 정산명세서, 환율 근거, 선차감 증빙, 송금 내역, 누계 대장</td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">내부 관리</td></tr>
+        <tr><td class="nowrap">⇥ 참조</td><td>2026.05.06 LDC 판매 정산은 본 체인이 아닌 별도 특례 구조</td><td class="nowrap">에코아이</td><td class="nowrap">—</td><td class="nowrap">SL 4</td></tr>
+        <tr><td class="nowrap">⇥ H</td><td><span class="pill green">인계</span> 76.25% 중 Residual NDFs 집행은 H 체인 소관</td><td class="nowrap">GGA·EKS</td><td class="nowrap">—</td><td class="nowrap">SL 8</td></tr>
+      </tbody></table></div>
+
+      <div class="call orange">
+        <p><b>자주 틀리는 지점</b></p>
+        <ul>
+          <li>20영업일은 입금일 기산이 아니라 <b>대금 수령과 비용 정산이 모두 끝난 날</b>부터 기산합니다.</li>
+          <li>선차감은 워터폴 순서 밖의 항목으로 (a)보다 먼저 처리하며, Contribution·Excess Contribution에 산입하지 않습니다.</li>
+          <li>한시 구간의 38 : 62는 <b>NDF에만</b> 적용됩니다. 선차감과 투자금 회수는 이 구간에서도 그대로 선행합니다.</li>
+          <li>문턱은 건별 금액이 아니라 <b>누계 지급액</b> 기준입니다.</li>
+        </ul>
+      </div>
+      <p class="small muted">연결 원고: N-06 · H-01 특정 LDC 판매 정산 · H-02 USD 3,333,333 누계 지급 특례</p>
+    </div>
+  </details>
+
+  <h3>상시 관리 — 정상 흐름과 병행</h3>
+
+  <details><summary><span class="code">G</span>유보 배출권·정부 대응 <span class="pill">에코아이 실행 / GGA 전달</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — 발행 시 20% 분리 / 정부 지시에 따른 GGA 이전·취소 요청 / 호스트국 요건 변화 / 정부 추가 요구·비용 증가</p>
+      <div class="tscroll"><table><thead><tr><th>핵심 기한</th><th>담당</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td>발급량의 20% 유보 분리·기록 — 발급 즉시</td><td>에코아이</td><td class="nowrap">6.1.2</td></tr>
+        <tr><td>지정 계정 이전 또는 취소 — 요청 후 10영업일</td><td>에코아이</td><td class="nowrap">6.1.2</td></tr>
+        <tr><td>호스트국 요건 변화 — 즉시 통지</td><td>GGA</td><td class="nowrap">SL 23</td></tr>
+      </tbody></table></div>
+      <p class="small muted">연결 원고: B-05 유보 배출권 이전·취소 · E-03 CA 미완료에 따른 유보 배출권 예외판매 · E-06</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">H</span>사회공헌 · SP Fund <span class="pill">GGA·EKS 집행 / 에코아이 검토</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — SP Fund 조성 / 사회공헌사업 정보 수령 / EKS 집행 정보 수령 / 회수 사유 발생</p>
+      <div class="tscroll"><table><thead><tr><th>핵심 기한</th><th>담당</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td>사회공헌사업 정보 수령 후 이의 여부 회신 — 15영업일</td><td>에코아이</td><td class="nowrap">SL 13</td></tr>
+        <tr><td>EKS 집행 정보 제공과 질의 응답 — 10영업일</td><td>GGA</td><td class="nowrap">SL 15</td></tr>
+        <tr><td>SP Funds 규모 — USD 2,000,000</td><td>에코아이 → GGA → EKS</td><td class="nowrap">SL 5</td></tr>
+      </tbody></table></div>
+      <p class="small muted">연결 원고: B-06 · E-07 · H-03·H-04는 확정된 과거 이력으로 트리거 없이 참조용</p>
+    </div>
+  </details>
+
+  <details><summary><span class="code">I</span>계약 관리·통지 <span class="pill">양사</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — 공식 통지 발송·수령 / 10일 무응답 승인 간주 임박 / 계좌·주소·등록부 변경 / 계약 변경 합의 / 비밀정보 제공 요청</p>
+      <div class="call red"><p><b>제2.3조</b> — 문서를 받고 <b>10일(역일)</b> 안에 회신하지 않으면 승인한 것으로 간주합니다. 받은 제안은 반드시 회신 기록을 남기세요.</p></div>
+      <div class="tscroll"><table><thead><tr><th>핵심 기한</th><th>담당</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td>무응답 시 승인 간주 — 10일(역일)</td><td>양 당사자</td><td class="nowrap">2.3</td></tr>
+        <tr><td>계좌·레지스트리·주소 변경 통지 — 최소 5영업일 전</td><td>변경 당사자</td><td class="nowrap">6.3</td></tr>
+        <tr><td>우편 통지 도달 간주 — 국내 10영업일 / 국제 15영업일</td><td>양 당사자</td><td class="nowrap">16.3</td></tr>
+        <tr><td>계약 변경은 서면 합의만 유효</td><td>양사</td><td class="nowrap">16.12</td></tr>
+      </tbody></table></div>
+      <p class="small muted">연결 원고: B-10 · E-13</p>
+    </div>
+  </details>
+
+  <h3>예외 — 개별 사유 발생 시</h3>
+
+  <details><summary><span class="code">J</span>예외·분쟁·종료 <span class="pill red">사안별</span></summary>
+    <div class="dbody">
+      <p><b>대표 트리거</b> — CA Longstop·9 Month 미완료 / 발행 18개월 지연·거절·물량 축소 / 법령·기준 변경 / 불가항력 / 채무불이행 / 분쟁 / 준법·비밀유지 위반</p>
+      <div class="tscroll"><table><thead><tr><th>핵심 기한</th><th>담당</th><th class="nowrap">근거</th></tr></thead><tbody>
+        <tr><td>채무불이행 치유 — 30영업일, 도산은 60영업일</td><td>불이행 당사자</td><td class="nowrap">11.1</td></tr>
+        <tr><td>해지 예정일 지정·통지 — 치유 기간 경과 후 20영업일 이후</td><td>비불이행 당사자</td><td class="nowrap">11.2(b)</td></tr>
+        <tr><td>발행 18개월 이상 지연·거절·물량 축소 — 미도래 마일스톤 지급 유보</td><td>에코아이</td><td class="nowrap">15.3</td></tr>
+        <tr><td>9 Month Date 이후 정산·증빙 — 1개월 내</td><td>공동</td><td class="nowrap">SL 21~22</td></tr>
+        <tr><td>분쟁 — 협의 후 ICC 단독 중재, 중재지 뉴욕, 영어</td><td>양사</td><td class="nowrap">15.1</td></tr>
+      </tbody></table></div>
+      <p class="small muted">연결 원고: E-01 CA Longstop 도래 시 미완료 대응 · E-02 CA 9개월 미완료 시 잔여금 정산 · E-04 · E-08~E-12</p>
+    </div>
+  </details>
+</section>
+
+<!-- ============ 자금·정산 ============ -->
+<section class="panel" id="p-money" role="tabpanel" aria-labelledby="tab-money" tabindex="0" hidden>
+  <h2>자금·정산 구조</h2>
+  <p class="lede">발급 시점의 유보 20% 분리부터 선차감, 투자금 회수, NDF 배분까지의 순서입니다. 현재는 사이드레터에 따른 한시적 재조정 구간이 적용됩니다.</p>
+
+  <h3>정상 워터폴 (제6.1.1~6.1.2조)</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">순서</th><th class="nowrap">항목</th><th>내용</th><th class="nowrap">비율·조건</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap"><span class="pill orange">사전</span></td><td class="nowrap">유보배출권</td><td>발급 시점에 연간 발급량의 20%를 분리해 미판매·무담보로 보유. 판매 파이프라인에는 80%만 투입</td><td class="nowrap"><b>20%</b></td></tr>
+      <tr><td class="nowrap"><span class="pill">0단계</span></td><td class="nowrap">발행비 선차감</td><td>1차 모니터링 이후 발행비는 판매대금에서 우선 회수. 3차 모니터링 이후분은 공정·형평 분담을 서면 합의</td><td class="nowrap">실비 전액</td></tr>
+      <tr><td class="nowrap"><span class="pill">0단계</span></td><td class="nowrap">판매 부대비용 선차감</td><td>판매·이전 비용, 레지스트리 수수료 등을 부담 당사자가 회수</td><td class="nowrap">워터폴보다 우선</td></tr>
+      <tr><td class="nowrap">(a)-i</td><td class="nowrap">초과투자금 회수</td><td>초과투자금을 각자 비율로 회수하고 단리 연 12% 프리미엄을 함께 회수</td><td class="nowrap"><b>12% 프리미엄</b></td></tr>
+      <tr><td class="nowrap">(a)-ii</td><td class="nowrap">투자금 회수</td><td>원 투자금을 당사자 비율로 회수</td><td class="nowrap">79.95 : 20.05</td></tr>
+      <tr><td class="nowrap">(b)</td><td class="nowrap">운영비 충당</td><td>연간예산을 GGA 계좌로 지급. 합의 시 (b)가 (a)보다 선행 가능하며 이 경우 투자금에 가산</td><td class="nowrap">연간예산 범위</td></tr>
+      <tr><td class="nowrap">(c)-i</td><td class="nowrap">이익배분</td><td>잔여금(NDF)의 23.75%를 양 당사자가 영구 보유</td><td class="nowrap">23.75% × 79.95 : 20.05</td></tr>
+      <tr><td class="nowrap">(c)-ii</td><td class="nowrap">GGA 배분</td><td>NDF의 76.25%를 GGA에 배분하고 호스트국 세금 → 정부 관련 비정기·법률비용 → 기타 순으로 집행</td><td class="nowrap">76.25%</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <p><b>유보배출권 20%</b> — 우즈베키스탄 정부의 ITMO 요건과 허가서(LoA)에 따라 각 연도 발급량의 20%를 판매하지 않고 에코아이 Verra 계정에 보유합니다. 분리 시점은 <b>판매 단계가 아니라 발급 단계</b>입니다. 발급 통보와 동시에 빈티지별로 유보분을 표시해 두세요. 정부 지시 후 GGA 요청이 오면 10영업일 내에 지정 계정으로 이전하거나 취소합니다. CA Longstop Date로부터 9개월 내 CA가 BTR에 반영되지 않으면 상호 합의로 매각할 수 있고, 미회수 법률비용을 차감한 뒤 50:50으로 배분합니다.</p>
+  </div>
+
+  <div class="call orange">
+    <p><b>76.25%의 내부 구조</b> (사이드레터 제8항, 문턱 도달 후) — 38.75%는 GGA 이익 21.75% + EKS 이익 17%, 37.5%는 Residual NDFs로 호스트국 세금·비정기비용·법률비용 재원입니다. Residual NDFs를 사회공헌 집행 외 용도로 쓰려면 에코아이의 사전 서면 동의가 필요하며, 이 재원이 GGA의 제6.1.2(c)(ii)조 의무 이행의 <b>유일한 재원이자 상한</b>입니다(제11항).</p>
+  </div>
+
+  <h3>한시적 재조정 — 사이드레터 제3~7항 (일회성)</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">순서</th><th class="nowrap">항목</th><th>내용</th><th class="nowrap">금액·비율</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">1</td><td class="nowrap">LDC 판매 특례</td><td>2026.05.06 LDC 판매대금 중 에코아이 회수 — A6 라벨비 53,404.15 + 227,010, 발행비 부분회수 977,585.85, 이전수수료 6,000</td><td class="nowrap"><b>USD 1,264,000</b></td></tr>
+      <tr><td class="nowrap">2</td><td class="nowrap">SP Funds 조성</td><td>에코아이가 GGA에 이전하고 GGA가 EKS로 이전해 사회공헌사업에 집행</td><td class="nowrap"><b>USD 2,000,000</b></td></tr>
+      <tr><td class="nowrap">3</td><td class="nowrap">한시 배분</td><td>LDC 판매 이후 발생한 NDF를 누적 문턱까지 재조정 비율로 배분</td><td class="nowrap">38%(79.95:20.05) + 62% GGA</td></tr>
+      <tr><td class="nowrap">4</td><td class="nowrap">정상 복귀</td><td>누적 지급이 문턱에 도달하면 이후 판매의 NDF는 정상 구조로 자동 복귀</td><td class="nowrap">23.75% + 76.25%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call green"><p><b>관리 포인트</b> — 판매별 NDF 누적액을 별도 대장으로 집계하고, 누적 <b>USD 3,333,333</b> 문턱을 걸치는 판매는 구간을 나누어 계산합니다. 선차감(제6.1.1조)과 투자금 회수(a)는 이 구간에서도 그대로 선행합니다.</p></div>
+
+  <h3>상응조정(CA) 미발급 국면 — 제6.1.4~6.1.5조</h3>
+  <div class="call red">
+    <ul>
+      <li><b>CA Longstop Date</b> — 해당 빈티지의 상응조정이 UNFCCC 지정 기한까지 호스트국 BTR에 반영되지 않은 시점</li>
+      <li>이후에도 해당 빈티지의 NDF 배분은 <b>계속</b>됩니다 (제6.1.4(1)조, SL 16)</li>
+      <li>호스트국 세금과 비정기비용의 추가 집행은 중단됩니다. 서면 합의 시에만 예외 (제6.1.4(2)조)</li>
+      <li>SP Funds는 EKS 추가 이전을 중단하고 미집행분은 반환을 요청합니다 (SL 14.2)</li>
+      <li>CA Longstop부터 9 Month Date까지는 보류·회수된 SP Funds를 CA 확보 목적으로 사용하기로 합의할 수 있습니다 (SL 21)</li>
+      <li>9 Month Date 잔여 SP Funds는 법률비용 차감 후 50:50 배분하고, <b>9 Month Date로부터 1개월 내</b> 정산·증빙을 마칩니다</li>
+      <li>이후 판매는 50%를 양 당사자(79.95:20.05), 50%를 GGA에 배분합니다 (제6.1.5조)</li>
+      <li>GGA가 CA 미발급을 이유로 EKS 이익배분을 보류하는 경우, 법률비용 차감 후 에코아이와 균등 분배합니다 (SL 22)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 판매 체크리스트 ============ -->
+<section class="panel" id="p-sale" role="tabpanel" aria-labelledby="tab-sale" tabindex="0" hidden>
+  <h2>판매 발생 시 실행 체크리스트</h2>
+  <p class="lede">에코아이 담당 업무를 발생 순서대로 정리했습니다. E 판매·인도 → F 정산·배분 체인 기준입니다.</p>
+
+  <div class="prog">
+    <div><div class="small muted">진행률</div><div class="kpi"><span id="saleDone">0</span> / 23</div></div>
+    <div class="barwrap">
+      <div class="bar" role="progressbar" aria-label="판매 체크리스트 진행률" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0" id="saleBar"><span id="saleFill"></span></div>
+      <div class="small muted" style="margin-top:8px">체크 상태는 이 브라우저에만 저장됩니다.</div>
+    </div>
+    <button class="btn" type="button" id="saleReset">초기화</button>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><div class="kpi blue">20영업일</div><div class="small" style="font-weight:600;margin-bottom:6px">워터폴 분배 집행</div><p>입금일 기산이 아닙니다. 대금 수령일과 비용 정산 완료일 중 <b>나중 날짜</b>부터 기산합니다.</p></div>
+    <div class="card"><div class="kpi orange">5영업일 전</div><div class="small" style="font-weight:600;margin-bottom:6px">선차감 사전 통지</div><p>내역과 합리적 증빙을 사전 통지해야 선차감 근거가 유지됩니다.</p></div>
+    <div class="card"><div class="kpi green">USD 3,333,333</div><div class="small" style="font-weight:600;margin-bottom:6px">한시 재조정 문턱</div><p>건별 금액이 아니라 <b>누계 지급액</b> 기준입니다. 걸치는 판매는 구간을 나눕니다.</p></div>
+  </div>
+
+  <h3>1 · 판매 전 확인</h3>
+  <p class="muted small">계약 체결 전에 마무리되어야 하는 항목입니다.</p>
+  <ol class="steps sale">
+    <li class="step"><label class="box"><input type="checkbox" data-id="s1" aria-label="판매 가능 물량 확정" /></label><div><p class="st"><span class="idx">01</span>판매 가능 물량 확정</p><p class="sd">발급량에서 유보 20%를 제외한 80%만 판매 풀에 편입되었는지 대조합니다. 유보 분리 시점은 발급 직후입니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">협의 착수 전</span><span class="pill">6.1.2</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s2" aria-label="라벨 보험 적용 상태 대조" /></label><div><p class="st"><span class="idx">02</span>라벨·보험 적용 상태 대조</p><p class="sd">매매계약이 요구하는 CORSIA 라벨·보험 물량을 등록부·보험계약 기록과 대조하고 부족분은 GGA와 협의합니다.</p><div class="pills"><span class="pill">에코아이 → GGA</span><span class="pill">계약상 기한 없음</span><span class="pill">5.10(h)</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s3" aria-label="5.10(h) 상호 승인" /></label><div><p class="st"><span class="idx">03</span><span class="pill blue">조건부</span> 제5.10(h)조 대상 물량이면 상호 승인</p><p class="sd">서면 물량 합의와 상호 승인을 이행합니다. 일반 판매에는 GGA 승인 단계를 추가하지 않습니다.</p><div class="pills"><span class="pill">양사</span><span class="pill orange">계약 체결 전</span><span class="pill">5.10(h)</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s4" aria-label="KOC 전환" /></label><div><p class="st"><span class="idx">04</span><span class="pill blue">조건부</span> KOC 전환</p><p class="sd">전환이 필요하면 에코아이가 주도하고 GGA는 문서 작성·서명에 협조합니다.</p><div class="pills"><span class="pill">에코아이 주도 / GGA 협조</span><span class="pill orange">인도 전</span><span class="pill">3.3, 4.11</span></div></div></li>
+  </ol>
+
+  <h3>2 · 체결 · 인도 · 입금</h3>
+  <p class="muted small">기한은 ERDFA가 아니라 매매계약이 정합니다.</p>
+  <ol class="steps sale">
+    <li class="step"><label class="box"><input type="checkbox" data-id="s5" aria-label="판매계약 체결" /></label><div><p class="st"><span class="idx">05</span>판매계약 체결</p><p class="sd">에코아이가 반드시 판매계약 당사자여야 합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill">3.4</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s6" aria-label="수령 계좌 변경 통지" /></label><div><p class="st"><span class="idx">06</span><span class="pill blue">조건부</span> 대금 수령 계좌 변경 통지</p><p class="sd">계좌·레지스트리·주소를 변경하는 경우 상대방에 서면(이메일 포함)으로 통지합니다.</p><div class="pills"><span class="pill">변경 당사자</span><span class="pill orange">최소 5영업일 전</span><span class="pill">6.3</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s7" aria-label="배출권 인도" /></label><div><p class="st"><span class="idx">07</span>배출권 인도</p><p class="sd">구매자 계정으로 이전합니다. ERDFA에는 인도 일수 규정이 없습니다.</p><div class="pills"><span class="pill">에코아이 → 구매자</span><span class="pill orange">매매계약상 인도일</span><span class="pill">3.4, 4.11</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s8" aria-label="판매대금 입금 확인" /></label><div><p class="st"><span class="idx">08</span>판매대금 입금 확인</p><p class="sd">에코아이 현금계좌 입금을 확인합니다. 지정통화(USD) 외로 수령한 경우 수익 실현일 환율을 적용하고 근거를 보관합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">매매계약상 지급일</span><span class="pill">6.2</span></div></div></li>
+  </ol>
+
+  <h3>3 · 선차감 정산</h3>
+  <p class="muted small">워터폴 순서 밖의 항목으로 (a) 투자금 회수보다 먼저 처리합니다.</p>
+  <ol class="steps sale">
+    <li class="step"><label class="box"><input type="checkbox" data-id="s9" aria-label="선차감 사전 통지" /></label><div><p class="st"><span class="idx">09</span>선차감 사전 통지와 증빙 제공</p><p class="sd">판매·이전·등록부 비용을 회수하려면 실제 비용을 부담한 당사자가 내역과 합리적 증빙을 사전 통지해야 합니다.</p><div class="pills"><span class="pill">비용 부담 당사자</span><span class="pill orange">회수 최소 5영업일 전</span><span class="pill">6.1.1</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s10" aria-label="판매 이전 비용 정산" /></label><div><p class="st"><span class="idx">10</span>판매·이전 비용 정산</p><p class="sd">워터폴 적용 전에 우선 회수합니다. Contribution·Excess Contribution에 산입하지 않습니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">워터폴 적용 전</span><span class="pill">6.1.1</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s11" aria-label="선차감 항목 확정" /></label><div><p class="st"><span class="idx">11</span>선차감 항목 확정</p><p class="sd">발행비, 판매·이전 비용, 레지스트리 수수료를 실비 전액으로 집계합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">워터폴 계산 전</span><span class="pill">6.1.1</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s12" aria-label="3차 모니터링 이후 발행비 합의" /></label><div><p class="st"><span class="idx">12</span><span class="pill blue">조건부</span> 3차 모니터링 이후 발행비 분담 합의</p><p class="sd">해당 발행비가 포함되면 공정·형평 분담을 서면으로 합의한 뒤 차감합니다.</p><div class="pills"><span class="pill">양사</span><span class="pill orange">해당 발행비 차감 전</span><span class="pill">6.1.1</span></div></div></li>
+  </ol>
+
+  <h3>4 · 워터폴 계산 · 집행</h3>
+  <ol class="steps sale">
+    <li class="step"><label class="box"><input type="checkbox" data-id="s13" aria-label="20영업일 기산점 확정" /></label><div><p class="st"><span class="idx">13</span>20영업일 기산점 확정</p><p class="sd">대금 수령일과 판매·이전 비용 정산 완료일 중 나중 날짜를 기산일로 기록합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">두 조건 충족 시점</span><span class="pill">6.1.1</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s14" aria-label="한시 재조정 구간 판정" /></label><div><p class="st"><span class="idx">14</span>한시 재조정 구간 판정</p><p class="sd">누적 NDF가 USD 3,333,333 문턱에 도달했는지 대장으로 확인하고, 문턱을 걸치는 판매는 구간을 나누어 계산합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">워터폴 계산 전</span><span class="pill">사이드레터 3~7</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s15" aria-label="초과투자금 회수" /></label><div><p class="st"><span class="idx">15</span>(a)-i 초과투자금 회수</p><p class="sd">Excess Contribution을 각자 부담 비율로 회수하고 단리 연 12% 프리미엄을 함께 회수합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">선차감 직후</span><span class="pill">6.1.2(a), SL 1</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s16" aria-label="투자금 회수" /></label><div><p class="st"><span class="idx">16</span>(a)-ii 투자금 회수</p><p class="sd">Contribution을 에코아이 79.95 : GGA 20.05 비율로 회수합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">(a)-i 완료 후</span><span class="pill">6.1.2(a)</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s17" aria-label="운영비 충당" /></label><div><p class="st"><span class="idx">17</span>(b) 운영비 충당</p><p class="sd">승인된 연간예산을 개발자 현금계좌로 지급합니다. (b)를 (a)보다 선행 집행하기로 서면 합의한 경우 해당 금액을 투자금에 가산합니다.</p><div class="pills"><span class="pill">에코아이 → GGA</span><span class="pill orange">(a) 완료 후</span><span class="pill">6.1.2(b), 5.4</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s18" aria-label="NDF 배분 산정" /></label><div><p class="st"><span class="idx">18</span>(c) NDF 배분 산정</p><p class="sd">정상 구조는 23.75% 양사(79.95 : 20.05) + 76.25% GGA, 한시 재조정 구간은 38% 양사 + 62% GGA입니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">(b) 완료 후</span><span class="pill">6.1.2(c), SL 6~8</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s19" aria-label="GGA 지급 실행" /></label><div><p class="st"><span class="idx">19</span>GGA 지급 실행</p><p class="sd">산정 금액을 GGA 지정 계좌로 송금합니다.</p><div class="pills"><span class="pill">에코아이 → GGA</span><span class="pill orange">기산일부터 20영업일</span><span class="pill">6.1.1</span></div></div></li>
+  </ol>
+
+  <h3>5 · 사후 관리 · 인계</h3>
+  <ol class="steps sale">
+    <li class="step"><label class="box"><input type="checkbox" data-id="s20" aria-label="누적 NDF 대장 갱신" /></label><div><p class="st"><span class="idx">20</span>누적 NDF 대장 갱신</p><p class="sd">이번 판매의 NDF 지급액을 누계에 반영합니다. 문턱 도달 시 이후 판매부터 정상 구조로 자동 복귀합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill orange">지급 직후</span><span class="pill">사이드레터 3~7</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s21" aria-label="지연이자 산정" /></label><div><p class="st"><span class="idx">21</span><span class="pill blue">조건부</span> 지연이자 산정</p><p class="sd">지급 기한을 넘긴 금액이 있으면 연 6% 지연이자를 산정해 함께 지급합니다.</p><div class="pills"><span class="pill">지급 당사자</span><span class="pill orange">지연 기간 전체</span><span class="pill">6.4</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s22" aria-label="내부 기록 보관" /></label><div><p class="st"><span class="idx">22</span>내부 기록 보관</p><p class="sd">매매계약, 인도 확인자료, 대금 수령 내역, 정산명세서, 환율 근거, 선차감 증빙, 송금 내역, 누계 대장을 보관합니다.</p><div class="pills"><span class="pill">에코아이</span><span class="pill">내부 관리사항</span></div></div></li>
+    <li class="step"><label class="box"><input type="checkbox" data-id="s23" aria-label="H 체인 인계" /></label><div><p class="st"><span class="idx">23</span><span class="pill green">인계</span> Residual NDFs 집행은 H 체인으로</p><p class="sd">76.25% 중 Residual NDFs의 집행은 사회공헌·SP Fund 체인(GGA·EKS) 소관입니다. 2026.05.06 LDC 판매 정산은 본 체인이 아닌 별도 특례 구조로 처리합니다.</p><div class="pills"><span class="pill">GGA·EKS</span><span class="pill">SL 8</span></div></div></li>
+  </ol>
+
+  <div class="call red" style="margin-top:32px">
+    <p><b>이 체인에서 자주 틀리는 지점</b></p>
+    <ul>
+      <li>20영업일은 입금일 단독 기산이 아니라 <b>대금 수령과 비용 정산이 모두 끝난 날</b>부터 기산합니다. 구매자 인도기한이나 등록부 수수료 납부기한과도 무관합니다.</li>
+      <li>선차감은 워터폴 순서 밖의 항목으로 (a)보다 먼저 처리하며, Contribution·Excess Contribution에 산입하지 않습니다.</li>
+      <li>한시 구간의 38 : 62는 <b>NDF에만</b> 적용됩니다. 선차감과 투자금 회수는 이 구간에서도 그대로 선행합니다.</li>
+      <li>상호 승인·서면 물량 합의는 제5.10(h)조 대상 물량에만 적용됩니다. 일반 판매에 GGA 승인 단계를 추가하지 않습니다.</li>
+      <li>LDC 판매 특례·USD 3,333,333 한시 배분·CA 미완료 유보분 예외판매는 <b>배분 비율</b>에 관한 사항이며, 판매계약 체결만으로 특례 요건이 충족되지 않습니다.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 기한 통제표 ============ -->
+<section class="panel" id="p-deadline" role="tabpanel" aria-labelledby="tab-deadline" tabindex="0" hidden>
+  <h2>조건·기한 통제표</h2>
+  <p class="lede">발생 조건이 생기면 이 표에서 필수 조치와 기한을 확인합니다. 아래 검색창에 조건·담당·조항을 입력해 좁힐 수 있습니다.</p>
+
+  <div class="field" style="max-width:420px;margin-bottom:8px">
+    <label for="dlFilter">검색</label>
+    <input type="text" id="dlFilter" placeholder="예: 20영업일, 선차감, 에코아이, 6.1.1" autocomplete="off" />
+  </div>
+  <p class="small muted" id="dlCount" role="status" aria-live="polite"></p>
+
+  <div class="tscroll"><table id="dlTable">
+    <thead><tr><th>발생 조건</th><th>필수 조치</th><th class="nowrap">담당</th><th class="nowrap">기한</th><th class="nowrap">근거</th></tr></thead>
+    <tbody>
+      <tr><td>마일스톤 완료 및 증빙 제출</td><td>개발비 지급</td><td class="nowrap">에코아이</td><td class="nowrap">수령 후 30일(역일)</td><td class="nowrap">5.1</td></tr>
+      <tr><td>에코아이의 연간예산 초안 요청</td><td>초안 작성·제출</td><td class="nowrap">GGA</td><td class="nowrap">요청일부터 15영업일</td><td class="nowrap">5.3</td></tr>
+      <tr><td>연간예산 마일스톤 통지·증빙 수령</td><td>해당 금액 지급</td><td class="nowrap">에코아이</td><td class="nowrap">30영업일</td><td class="nowrap">5.3(제4차)</td></tr>
+      <tr><td>에코아이의 재무제표 요청</td><td>감사·비감사 재무제표 제출</td><td class="nowrap">GGA</td><td class="nowrap">20영업일</td><td class="nowrap">5.7</td></tr>
+      <tr><td>추가자금 필요</td><td>조달 협의와 검토·회신</td><td class="nowrap">공동</td><td class="nowrap">협의 10영업일 + 검토 10영업일</td><td class="nowrap">5.8~5.9</td></tr>
+      <tr><td>에코아이의 자료·정보 요청</td><td>자료 제공</td><td class="nowrap">GGA</td><td class="nowrap">10영업일</td><td class="nowrap">4.13(제7차)</td></tr>
+      <tr><td>분기 종료</td><td>분기 운영·재무 보고</td><td class="nowrap">GGA</td><td class="nowrap">분기 종료 후 1개월</td><td class="nowrap">4.12</td></tr>
+      <tr><td>프로젝트 중대 사건 발생</td><td>에코아이에 즉시 통지</td><td class="nowrap">GGA</td><td class="nowrap">즉시</td><td class="nowrap">4.9(제1차)</td></tr>
+      <tr><td>제안·요청 문서 수령 후 무응답</td><td>미회신 시 승인으로 간주</td><td class="nowrap">양 당사자</td><td class="nowrap">10일(역일)</td><td class="nowrap">2.3</td></tr>
+      <tr><td>판매·이전 부대비용 선차감 예정</td><td>내역과 합리적 증빙 통지</td><td class="nowrap">비용 부담 당사자</td><td class="nowrap">최소 5영업일 전</td><td class="nowrap">6.1.1</td></tr>
+      <tr><td>판매대금 수령 및 비용 정산 완료</td><td>워터폴에 따라 분배</td><td class="nowrap">에코아이</td><td class="nowrap">20영업일</td><td class="nowrap">6.1.1</td></tr>
+      <tr><td>해당 빈티지 발급 완료</td><td>발급량의 20%를 유보배출권으로 분리·기록하고 판매 가능 물량 확정</td><td class="nowrap">에코아이</td><td class="nowrap">발급 즉시</td><td class="nowrap">6.1.2</td></tr>
+      <tr><td>유보배출권에 대한 정부 지시와 GGA 요청</td><td>지정 계정 이전 또는 취소</td><td class="nowrap">에코아이</td><td class="nowrap">10영업일</td><td class="nowrap">6.1.2</td></tr>
+      <tr><td>사회공헌사업 정보 수령</td><td>이의 여부 회신</td><td class="nowrap">에코아이</td><td class="nowrap">15영업일</td><td class="nowrap">SL 13</td></tr>
+      <tr><td>EKS의 집행 정보 수령</td><td>에코아이에 정보 제공과 질의 응답</td><td class="nowrap">GGA</td><td class="nowrap">10영업일</td><td class="nowrap">SL 15</td></tr>
+      <tr><td>권고 법률비용 통지 수령</td><td>승인 또는 선의의 이의 제기</td><td class="nowrap">에코아이</td><td class="nowrap">7영업일</td><td class="nowrap">SL 19</td></tr>
+      <tr><td>권고 법률비용에 이의 제기</td><td>상호 해결 노력</td><td class="nowrap">공동</td><td class="nowrap">5영업일</td><td class="nowrap">SL 19</td></tr>
+      <tr><td>강제 법률비용 회수 실행</td><td>회수 사실 통지</td><td class="nowrap">GGA</td><td class="nowrap">7영업일</td><td class="nowrap">SL 20</td></tr>
+      <tr><td>지급 기한을 넘긴 대금 발생</td><td>연 6% 지연이자 산정·지급</td><td class="nowrap">지급 당사자</td><td class="nowrap">지연 기간</td><td class="nowrap">6.4</td></tr>
+      <tr><td>계좌·레지스트리·주소 변경</td><td>서면(이메일 포함) 통지</td><td class="nowrap">변경 당사자</td><td class="nowrap">최소 5영업일 전</td><td class="nowrap">6.3</td></tr>
+      <tr><td>채무불이행 사유 발생</td><td>치유</td><td class="nowrap">불이행 당사자</td><td class="nowrap">30영업일, 도산은 60영업일</td><td class="nowrap">11.1</td></tr>
+      <tr><td>치유 기간 경과</td><td>해지 예정일 지정·통지</td><td class="nowrap">비불이행 당사자</td><td class="nowrap">20영업일 이후</td><td class="nowrap">11.2(b)</td></tr>
+      <tr><td>발급 18개월 이상 지연·거절·물량 축소</td><td>미도래 마일스톤 지급 유보와 법적 절차 요구</td><td class="nowrap">에코아이</td><td class="nowrap">사유 확인 즉시</td><td class="nowrap">15.3</td></tr>
+      <tr><td>통지 우편 발송</td><td>도달 간주 시점 계산</td><td class="nowrap">양 당사자</td><td class="nowrap">국내 10영업일 / 국제 15영업일</td><td class="nowrap">16.3</td></tr>
+      <tr><td>CORSIA 보험계약 체결본 수령</td><td>합의 보험비용 전액 지급 (Investor's Excess Contribution 계상)</td><td class="nowrap">에코아이</td><td class="nowrap">15일(역일)</td><td class="nowrap">5.10(e)~(f)</td></tr>
+      <tr><td>9 Month Date 도래</td><td>잔여 SP Funds 정산·증빙 완료 (법률비용 차감 후 50:50)</td><td class="nowrap">공동</td><td class="nowrap">1개월</td><td class="nowrap">SL 21~22</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call red">
+    <p><b>특히 주의</b> — 제2.3조는 문서를 받고 <b>10일(역일)</b> 안에 회신하지 않으면 승인한 것으로 간주합니다. 받은 제안은 반드시 회신 기록을 남기세요. 제6.1.1조의 <b>5영업일 사전 통지</b>가 없으면 선차감 근거가 약해집니다.</p>
+  </div>
+</section>
+
+<!-- ============ 캘린더 ============ -->
+<section class="panel" id="p-cal" role="tabpanel" aria-labelledby="tab-cal" tabindex="0" hidden>
+  <h2>캘린더</h2>
+  <p class="lede">빈티지별 CA 기한과 반복 일정을 한곳에서 봅니다. D-day는 이 페이지를 여는 날짜를 기준으로 자동 계산됩니다.</p>
+
+  <h3>2023~2024 빈티지 · CA 기한</h3>
+  <div class="grid g3">
+    <div class="card">
+      <div class="small muted">CA Longstop Date</div>
+      <div class="kpi red">2026-12-31</div>
+      <p data-dday="2026-12-31"></p>
+      <p style="margin-top:8px">해당 빈티지 상응조정이 이 시점까지 호스트국 BTR에 반영되지 않으면 CA 미발급 국면으로 넘어갑니다. <b>요청서 제출과 BTR 반영은 별개 사건</b>입니다.</p>
+    </div>
+    <div class="card">
+      <div class="small muted">9 Month Date</div>
+      <div class="kpi orange">2027-09-30</div>
+      <p data-dday="2027-09-30"></p>
+      <p style="margin-top:8px">이 시점까지 미반영이면 상호 합의로 유보 배출권을 매각할 수 있고, 잔여 SP Funds는 법률비용 차감 후 50:50으로 배분합니다.</p>
+    </div>
+    <div class="card">
+      <div class="small muted">정산·증빙 완료</div>
+      <div class="kpi blue">2027-10-31</div>
+      <p data-dday="2027-10-31"></p>
+      <p style="margin-top:8px">9 Month Date로부터 1개월 내 정산·증빙을 마칩니다(사이드레터 제21~22항). 계산 편의상 말일로 표기했습니다.</p>
+    </div>
+  </div>
+
+  <div class="call orange">
+    <p><b>대조 필요</b> — 제7차 변경합의서 관련 사내 문서에는 CA Longstop Date가 <b>2026-12-31</b>로 기재된 자료와 <b>2026-10-30</b>으로 기재된 회의록이 함께 존재합니다. 이 사이트는 계약 운영 매뉴얼과 제7차 변경 관련 검토 문서에 기재된 <b>2026-12-31 / 2027-09-30</b>을 기준으로 표기했습니다. 대외 문서에 인용하기 전 서명본으로 확정하세요.</p>
+  </div>
+
+  <h3>빈티지별 기한 대장</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">빈티지</th><th class="nowrap">CA Longstop</th><th class="nowrap">9 Month Date</th><th class="nowrap">정산 기한</th><th>상태·비고</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap"><b>2023~2024</b></td><td class="nowrap">2026-12-31</td><td class="nowrap">2027-09-30</td><td class="nowrap">2027-10-31</td><td>계약·검토문서에 명시된 첫 빈티지 기한. BTR 반영 증빙을 별도로 확보</td></tr>
+      <tr><td class="nowrap"><b>2025 이후</b></td><td class="nowrap"><span class="pill orange">미확정</span></td><td class="nowrap"><span class="pill orange">미확정</span></td><td class="nowrap"><span class="pill orange">미확정</span></td><td>사이드레터가 특정 빈티지로 범위를 한정하고 있어 이후 빈티지는 별도 합의가 필요하다는 쟁점이 미결 상태입니다. 확정 시 이 표를 갱신하세요</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">빈티지별 발급량·유보 20% 분리 현황은 별도 대장(엑셀 정리본)에서 관리하고, 이 표에는 기한만 둡니다.</p>
+
+  <h3>타임라인</h3>
+  <ul class="tl">
+    <li class="is-blue"><span class="tlt">발급 즉시</span><div class="tld">해당 빈티지 발급량의 20%를 유보배출권으로 분리·기록하고 판매 가능 물량을 80%로 확정 (제6.1.2조)</div></li>
+    <li class="is-blue"><span class="tlt">라벨·CA 추진</span><div class="tld">CORSIA 라벨링과 정부 CA 요청. 보험 체결본 수령 후 15일(역일) 내 보험비용 지급 (제5.10조)</div></li>
+    <li class="is-red"><span class="tlt">2026-12-31 · CA Longstop Date</span><div class="tld">BTR 반영 여부를 증빙으로 확인. 미완료 시 호스트국 세금·비정기비용 추가 집행 중단, SP Funds EKS 이전 중단·반환 요청. NDF 배분은 계속</div></li>
+    <li><span class="tlt">Longstop ~ 9 Month 사이</span><div class="tld">보류·회수된 SP Funds를 CA 확보 목적으로 사용하기로 합의 가능 (사이드레터 제21항)</div></li>
+    <li class="is-orange"><span class="tlt">2027-09-30 · 9 Month Date</span><div class="tld">미반영 확정 시 상호 합의로 유보분 매각 가능. 이후 판매는 50%를 양 당사자(79.95:20.05), 50%를 GGA에 배분 (제6.1.5조)</div></li>
+    <li class="is-blue"><span class="tlt">2027-10-31 · 정산 완료</span><div class="tld">잔여 SP Funds를 법률비용 차감 후 50:50 배분하고 정산·증빙을 마칩니다</div></li>
+  </ul>
+
+  <h3>반복 일정</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">일정</th><th class="nowrap">다음 기한</th><th class="nowrap">D-day</th><th class="nowrap">담당</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">3분기 분기보고</td><td class="nowrap">2026-10-31</td><td class="nowrap" data-dday="2026-10-31"></td><td class="nowrap">GGA → 에코아이</td><td>분기 종료 후 1개월 (제4.12조). 활동 요약·감축량 산정·비용 증빙 포함</td></tr>
+      <tr><td class="nowrap">4분기 분기보고</td><td class="nowrap">2027-01-31</td><td class="nowrap" data-dday="2027-01-31"></td><td class="nowrap">GGA → 에코아이</td><td>동일</td></tr>
+      <tr><td class="nowrap">연간예산 내부 검토</td><td class="nowrap">8~9월</td><td class="nowrap">—</td><td class="nowrap">에코아이</td><td><b>계약상 기한이 아닙니다.</b> 기산점은 에코아이의 작성 요청일이며 그로부터 15영업일이 GGA 제출 기한 (제5.3조). 대외 문서에 기한으로 적지 않습니다</td></tr>
+      <tr><td class="nowrap">연간예산 확정</td><td class="nowrap">10월</td><td class="nowrap">—</td><td class="nowrap">에코아이</td><td>내부 관리 일정. 승인 회신에는 계약상 일수 기한이 없습니다</td></tr>
+      <tr><td class="nowrap">Verra 레지스트리 연회비</td><td class="nowrap">청구서상 납기</td><td class="nowrap">—</td><td class="nowrap">GGA</td><td>등록부 운영·연회비 관리 (제4.5조). 제6.1.1조 등록부 비용이면 워터폴 전 선차감</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>영업일·역일 계산기</h3>
+  <p class="muted small">기산일과 기간을 넣으면 기한을 계산합니다. 토·일만 제외하는 단순 계산이므로 <b>공휴일은 별도로 반영</b>하세요.</p>
+  <div class="toolrow">
+    <div class="field"><label for="calcStart">기산일</label><input type="date" id="calcStart" /></div>
+    <div class="field"><label for="calcN">기간</label>
+      <select id="calcN">
+        <option value="20|b">20영업일 · 워터폴 분배 (6.1.1)</option>
+        <option value="5|b">5영업일 · 선차감 사전 통지 (6.1.1)</option>
+        <option value="7|b">7영업일 · 권고 법률비용 회신 (SL 19)</option>
+        <option value="10|b">10영업일 · 자료 제공 / 유보분 이전 (4.13, 6.1.2)</option>
+        <option value="15|b">15영업일 · 연간예산 초안 / 사회공헌 회신 (5.3, SL 13)</option>
+        <option value="30|b">30영업일 · 연간예산 마일스톤 지급 (5.3)</option>
+        <option value="10|c">10일(역일) · 무응답 승인 간주 (2.3)</option>
+        <option value="15|c">15일(역일) · 보험비용 지급 (5.10(e))</option>
+        <option value="30|c">30일(역일) · 개발비 지급 (5.1)</option>
+      </select>
+    </div>
+    <div class="field"><label for="calcRun" class="small muted">계산</label><button class="btn" type="button" id="calcRun">기한 계산</button></div>
+  </div>
+  <div class="result" id="calcOut" role="status" aria-live="polite"><p class="muted" style="margin:0">기산일과 기간을 선택한 뒤 계산을 누르세요.</p></div>
+</section>
+
+<!-- ============ 조항·용어 ============ -->
+<section class="panel" id="p-clause" role="tabpanel" aria-labelledby="tab-clause" tabindex="0" hidden>
+  <h2>조항·용어</h2>
+  <p class="lede">실무 문서에서 본 표현이 어느 조항인지 역으로 찾고, 인용 시 주의사항을 확인합니다.</p>
+
+  <div class="call red">
+    <p><b>인용 주의</b> — 통합본 자체에 상호참조 오류가 있습니다. 대외 문서나 법률 검토 요청에 조항 번호를 그대로 인용하지 마세요.</p>
+  </div>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">위치</th><th class="nowrap">계약서 표기</th><th>실제 상태</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">제7.1(c)조, 제7.2조</td><td class="nowrap">Clause 6.1 (c) (iv)</td><td>제7차 개편 후 해당 번호가 존재하지 않음. 문맥상 제6.1.2(c)(ii)조로 읽어야 함</td></tr>
+      <tr><td class="nowrap">제17.2조 Developer Share</td><td class="nowrap">Clause 6.1 (d)(ii)</td><td>해당 번호가 존재하지 않음. 문맥상 제6.1.2(c)(ii)조</td></tr>
+      <tr><td class="nowrap">제5차 변경 정의 블록</td><td class="nowrap">서명란 뒤 정의 중복</td><td>제17.2조 본문과 중복. 내용은 동일하나 위치가 비정상</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>실무 문서 표현 → 계약 근거</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">문서에서 보는 표현</th><th>무슨 뜻인가</th><th class="nowrap">계약 근거</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">Schedule 1</td><td>별표 1 프로젝트 상업조건 — 사업·기간·마일스톤·통지처·계좌·통화</td><td class="nowrap">별표 1 (제1차 개정)</td></tr>
+      <tr><td class="nowrap">Schedule 2</td><td>별표 2 비용 증빙 서식 — 목적·일자·비고·USD 금액·증빙</td><td class="nowrap">별표 2 (제1차 개정)</td></tr>
+      <tr><td class="nowrap">Project Milestones</td><td>별표 1의 투자 마일스톤 표, 합계 USD 8,058,234</td><td class="nowrap">별표 1, 5.1~5.2</td></tr>
+      <tr><td class="nowrap">Milestone Notice</td><td>마일스톤 완료 통지와 증빙. 수령 후 30일(역일) 내 개발비 지급. <b>사업 초기 단위로 현재 신규 발생하지 않음</b></td><td class="nowrap">5.1</td></tr>
+      <tr><td class="nowrap">Annual Budget · Operating Cost</td><td>연간 운영예산. 요청 후 15영업일 내 초안, 통지·증빙 수령 후 30영업일 내 지급</td><td class="nowrap">5.3(제4차)</td></tr>
+      <tr><td class="nowrap">Excess Contribution</td><td>승인 예산을 넘는 추가 투입 자금. 회수 시 단리 연 12% 프리미엄</td><td class="nowrap">5.8~5.9, SL 1</td></tr>
+      <tr><td class="nowrap">Waterfall · NDF</td><td>판매대금 분배 순서와 잔여 분배재원</td><td class="nowrap">6.1.1~6.1.2</td></tr>
+      <tr><td class="nowrap">Reserved Credits</td><td>발급량의 20% 유보 배출권</td><td class="nowrap">6.1.2</td></tr>
+      <tr><td class="nowrap">CA Longstop Date · 9 Month Date</td><td>상응조정 기한과 그로부터 9개월</td><td class="nowrap">6.1.4</td></tr>
+      <tr><td class="nowrap">LoA · Corresponding Adjustment</td><td>허가서와 상응조정</td><td class="nowrap">5.10, 6.1.4</td></tr>
+      <tr><td class="nowrap">SP Funds</td><td>사회공헌자금 USD 2,000,000</td><td class="nowrap">SL 5, 13~15</td></tr>
+      <tr><td class="nowrap">Side Letter</td><td>2026.05.15 별도 합의. 충돌 시 우선</td><td class="nowrap">SL (iii), 16.12</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call orange"><p><b>MR4, MP</b> 같은 모니터링 기간 약어는 <b>계약상 정의어가 아니라 프로젝트 운영 용어</b>입니다. 계약서에서 검색해도 나오지 않으므로 조항 근거를 붙이지 말고, 해당 기간이 어느 지급 단위에 대응하는지를 별도로 확인합니다.</p></div>
+
+  <h3>조항 인덱스</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">조항</th><th class="nowrap">제목</th><th>핵심 내용</th><th class="nowrap">주요 수치·기한</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">제1조</td><td class="nowrap">기간</td><td>최초 감축 발생일부터 10년, 합의 시 5년 연장</td><td class="nowrap">10년 + 5년</td></tr>
+      <tr><td class="nowrap">제2조</td><td class="nowrap">프로젝트 개발</td><td>협력 의무, 공동 주관기관(2.2), 10일 무응답 시 승인 간주(2.3)</td><td class="nowrap">10일</td></tr>
+      <tr><td class="nowrap">제3조</td><td class="nowrap">배출권</td><td>에코아이 계정 발급·소유(3.2), KOC 전환(3.3), 판매계약 당사자(3.4)</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제4조</td><td class="nowrap">개발자의 의무</td><td>현지 수행, Verra·AR(4.5), 즉시 통지(4.9), Lead Contact(4.10), 분기보고(4.12), 자료제공(4.13), 현장 접근(4.14), 배타성(4.15)</td><td class="nowrap">1개월 / 10영업일</td></tr>
+      <tr><td class="nowrap">제5조</td><td class="nowrap">프로젝트 자금</td><td>마일스톤 지급 30일(5.1), 연간예산(5.3), 개발자 현금계좌(5.4), 재무제표(5.7), 투자금·초과투자금(5.8~5.9), CORSIA 보험(5.10)</td><td class="nowrap">30일 / 15·20·30영업일</td></tr>
+      <tr><td class="nowrap">제6조</td><td class="nowrap">지급 및 정산</td><td>선차감(6.1.1), 유보 20%와 워터폴(6.1.2), 초과비용 협의(6.1.3), CA Longstop(6.1.4), 이후 판매 배분(6.1.5), 환율(6.2), 계좌변경(6.3), 지연이자(6.4)</td><td class="nowrap">20영업일 / 연 6%</td></tr>
+      <tr><td class="nowrap">제7조</td><td class="nowrap">비용 및 세금</td><td>프로젝트 비용 부담과 각 당사자 세금 원칙</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제8조</td><td class="nowrap">합의 및 진술·보장</td><td>체결 권한, 법규 준수, 진술·보장 항목(8.2), 개발자 특약(8.4)</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제9조</td><td class="nowrap">법령 변경</td><td>법률·제도 변경 시 영향 검토와 계약 조정</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제10조</td><td class="nowrap">불가항력</td><td>통지 의무와 의무 면제, 투자자 자금 의무 면제(10.4)</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제11조</td><td class="nowrap">채무불이행</td><td>치유 기간, 해지 절차, 해지 정산금, 지급 보류와 기능 이전(11.6)</td><td class="nowrap">30·60·20영업일</td></tr>
+      <tr><td class="nowrap">제12조</td><td class="nowrap">책임 및 면책</td><td>책임 제한과 손해배상·면책 범위</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제13조</td><td class="nowrap">부패방지·자금세탁방지</td><td>금품 제공 금지와 준수 의무, 위반은 중대 의무 위반(13.5)</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제14조</td><td class="nowrap">비밀정보</td><td>비밀유지 범위와 예외(14.2), 존속기간</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">제15조</td><td class="nowrap">분쟁 해결</td><td>협의 후 ICC 중재, 단독 중재인, 중재지 뉴욕, 영어(15.1), 호스트국 리스크 시 마일스톤 유보(15.3)</td><td class="nowrap">18개월</td></tr>
+      <tr><td class="nowrap">제16조</td><td class="nowrap">일반조항</td><td>통지 방법과 도달(16.2~16.4), 준거법 뉴욕주법(16.5), 서면 변경(16.12)</td><td class="nowrap">10·15영업일</td></tr>
+      <tr><td class="nowrap">제17조</td><td class="nowrap">정의 및 해석</td><td>해석 원칙(17.1), 정의 약 45~50개(17.2)</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">별표 1</td><td class="nowrap">프로젝트 상업조건</td><td>프로젝트 정의, 기간, 투자 마일스톤, 통지처, 계좌, 지정통화</td><td class="nowrap">USD 8,058,234</td></tr>
+      <tr><td class="nowrap">별표 2</td><td class="nowrap">비용 증빙 서식</td><td>비용 목적 / 일자 / 비고 / USD 금액 / 증빙</td><td class="nowrap">—</td></tr>
+      <tr><td class="nowrap">사이드레터</td><td class="nowrap">이익배분·자금 특약</td><td>12% 프리미엄(1), LDC 특례와 한시 배분(3~7), 76.25% 세부(8), 상한(11), 법률비용 절차(17~20), CA 미발급 처리(21~22)</td><td class="nowrap">USD 3,333,333</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>용어 기준</h3>
+  <div class="call">
+    <ul>
+      <li>Authorization은 <b>허가</b>, Letter of Authorization(LoA)은 <b>허가서</b>로 씁니다</li>
+      <li>retirement는 <b>소각</b>, cancellation은 <b>취소</b>로 구분합니다</li>
+      <li>VCU, NDF, AR, Host Country Tax, SP Funds는 원문 표기를 유지합니다</li>
+      <li>강제 법률비용(Mandatory)과 권고 법률비용(Recommended)은 절차가 달라 반드시 구분합니다</li>
+    </ul>
+  </div>
+
+  <h3>작성·수신 문서 인덱스</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th class="nowrap">문서</th><th class="nowrap">작성 → 수신</th><th class="nowrap">작성 시점</th><th class="nowrap">근거</th><th>반드시 담을 내용</th></tr></thead>
+    <tbody>
+      <tr><td class="nowrap">연간예산안</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">요청일부터 15영업일 내</td><td class="nowrap">5.3</td><td>운영 활동·비용 내역, 단계별 지급기준</td></tr>
+      <tr><td class="nowrap">연간예산 마일스톤 통지</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">각 지급단계 도래 시</td><td class="nowrap">5.3(제4차)</td><td>해당 지급단계 금액과 증빙. 지급기한은 수령 후 30영업일</td></tr>
+      <tr><td class="nowrap">별표 1 마일스톤 통지</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">마일스톤 완료 시</td><td class="nowrap">5.1~5.2</td><td>완료 사실과 증빙(별표 2). 지급기한 30일(역일). <b>현재는 신규 발생하지 않음</b></td></tr>
+      <tr><td class="nowrap">분기보고서</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">분기 종료 후 1개월 내</td><td class="nowrap">4.12</td><td>활동 요약, 감축량 산정, 비용 증빙</td></tr>
+      <tr><td class="nowrap">비용 증빙서</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">지급 요청·정산 시</td><td class="nowrap">별표 2</td><td>목적·일자·비고·USD 금액·증빙 첨부</td></tr>
+      <tr><td class="nowrap">재무제표</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">요청 후 20영업일 내</td><td class="nowrap">5.7</td><td>감사·비감사 재무제표</td></tr>
+      <tr><td class="nowrap">추가자금 사전 통지</td><td class="nowrap">GGA → 에코아이</td><td class="nowrap">예산 초과 예상 시 사전</td><td class="nowrap">5.8~5.9</td><td>초과 사유·금액. 협의 10영업일 + 검토 10영업일</td></tr>
+      <tr><td class="nowrap">선차감 사전 통지</td><td class="nowrap">비용 부담 당사자 → 상대방</td><td class="nowrap">회수 최소 5영업일 전</td><td class="nowrap">6.1.1</td><td>비용 내역과 합리적 증빙</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>이 사이트는 업무 이해용 안내서이며, 법적 해석은 서명된 영문 원문과 법률 검토를 우선합니다. 조항 번호는 통합본 상호참조 오류가 있어 대외 문서에 그대로 인용하지 않습니다.</p>
+  <p>상세 절차는 원고 DB(B·N·E·H 계열)에서 확인합니다. 빈티지별 CA 기한은 서명본으로 확정한 뒤 캘린더 탭을 갱신하세요.</p>
+</footer>
+
+<script>
+(function () {
+  /* ---------- tabs ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role=tab]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[role=tabpanel]'));
+
+  function activate(id, focus) {
+    tabs.forEach(function (t) {
+      var on = t.id === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) { t.focus(); }
+    });
+    panels.forEach(function (p) {
+      p.hidden = p.getAttribute('aria-labelledby') !== id;
+    });
+    try { history.replaceState(null, '', '#' + id.replace('tab-', '')); } catch (e) {}
+  }
+
+  tabs.forEach(function (t, i) {
+    t.tabIndex = t.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    t.addEventListener('click', function () { activate(t.id, false); window.scrollTo({ top: 0 }); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      activate(tabs[(i + d + tabs.length) % tabs.length].id, true);
+    });
+  });
+
+  var hash = (location.hash || '').replace('#', '');
+  if (hash && document.getElementById('tab-' + hash)) { activate('tab-' + hash, false); }
+
+  /* ---------- checklists ---------- */
+  function wireList(root, key, counterId, fillId, barId, resetId) {
+    var boxes = Array.prototype.slice.call(root.querySelectorAll('input[type=checkbox]'));
+    if (!boxes.length) return;
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { saved = {}; }
+
+    function render() {
+      var n = 0;
+      boxes.forEach(function (b) {
+        var li = b.closest('li.step');
+        if (b.checked) { n++; if (li) li.classList.add('done'); }
+        else if (li) { li.classList.remove('done'); }
+      });
+      if (counterId) { var c = document.getElementById(counterId); if (c) c.textContent = n; }
+      if (fillId) { var f = document.getElementById(fillId); if (f) f.style.width = (n / boxes.length * 100) + '%'; }
+      if (barId) { var bb = document.getElementById(barId); if (bb) bb.setAttribute('aria-valuenow', String(n)); }
+    }
+
+    boxes.forEach(function (b) {
+      if (saved[b.dataset.id]) { b.checked = true; }
+      b.addEventListener('change', function () {
+        saved[b.dataset.id] = b.checked;
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+        render();
+      });
+    });
+
+    if (resetId) {
+      var r = document.getElementById(resetId);
+      if (r) r.addEventListener('click', function () {
+        boxes.forEach(function (b) { b.checked = false; });
+        saved = {};
+        try { localStorage.removeItem(key); } catch (e) {}
+        render();
+      });
+    }
+    render();
+  }
+
+  wireList(document.getElementById('p-sale'), 'uz-sale-v2', 'saleDone', 'saleFill', 'saleBar', 'saleReset');
+  var ho = document.getElementById('handover');
+  if (ho) wireList(ho, 'uz-handover-v2', null, null, null, null);
+
+  /* ---------- deadline filter ---------- */
+  var fi = document.getElementById('dlFilter');
+  if (fi) {
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#dlTable tbody tr'));
+    var out = document.getElementById('dlCount');
+    fi.addEventListener('input', function () {
+      var q = fi.value.trim().toLowerCase();
+      var n = 0;
+      rows.forEach(function (r) {
+        var hit = !q || r.textContent.toLowerCase().indexOf(q) !== -1;
+        r.style.display = hit ? '' : 'none';
+        if (hit) n++;
+      });
+      out.textContent = q ? (n + '건 표시 중 (전체 ' + rows.length + '건)') : '';
+    });
+  }
+
+  /* ---------- D-day ---------- */
+  function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  var today = startOfDay(new Date());
+  Array.prototype.slice.call(document.querySelectorAll('[data-dday]')).forEach(function (el) {
+    var parts = el.getAttribute('data-dday').split('-');
+    var target = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    var diff = Math.round((target - today) / 86400000);
+    var label, cls;
+    if (diff > 0) { label = 'D-' + diff + ' · ' + diff + '일 남음'; cls = diff <= 90 ? 'orange' : ''; }
+    else if (diff === 0) { label = 'D-day · 오늘'; cls = 'red'; }
+    else { label = 'D+' + Math.abs(diff) + ' · 경과'; cls = 'red'; }
+    el.innerHTML = '<span class="pill ' + cls + '">' + label + '</span>';
+  });
+
+  /* ---------- business day calculator ---------- */
+  var run = document.getElementById('calcRun');
+  if (run) {
+    var startEl = document.getElementById('calcStart');
+    var nEl = document.getElementById('calcN');
+    var outEl = document.getElementById('calcOut');
+    var iso = function (d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    };
+    var week = ['일', '월', '화', '수', '목', '금', '토'];
+    startEl.value = iso(today);
+
+    run.addEventListener('click', function () {
+      if (!startEl.value) { outEl.innerHTML = '<p class="muted" style="margin:0">기산일을 선택하세요.</p>'; return; }
+      var p = startEl.value.split('-');
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      var cfg = nEl.value.split('|');
+      var n = +cfg[0], mode = cfg[1];
+      var label = nEl.options[nEl.selectedIndex].text;
+
+      if (mode === 'c') {
+        d.setDate(d.getDate() + n);
+      } else {
+        var left = n;
+        while (left > 0) {
+          d.setDate(d.getDate() + 1);
+          var w = d.getDay();
+          if (w !== 0 && w !== 6) left--;
+        }
+      }
+      var diff = Math.round((startOfDay(d) - today) / 86400000);
+      var rel = diff > 0 ? 'D-' + diff : diff === 0 ? 'D-day' : 'D+' + Math.abs(diff);
+      outEl.innerHTML =
+        '<div class="kpi blue">' + iso(d) + ' (' + week[d.getDay()] + ')</div>' +
+        '<p class="small" style="margin:0 0 6px">' + label + '</p>' +
+        '<p class="small muted" style="margin:0">오늘 기준 ' + rel + ' · ' +
+        (mode === 'c' ? '역일 계산' : '토·일 제외 영업일 계산 — 공휴일은 별도 반영') + '</p>';
+    });
+  }
+})();
+</script>
+</body>
+</html>
